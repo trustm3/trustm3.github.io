@@ -1,0 +1,271 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.wrapper {
+  width: 1000px !important;
+}
+
+section {
+  width: 770px !important;
+}
+
+header {
+  width: 180px !important;
+}
+
+footer {
+  width: 180px !important;
+}
+
+
+/* Menu styling*/
+#trustmenavbar {
+  display:inline-block;
+  width:100%;
+  height:100%;
+  position:static;
+  border: none;
+}
+#trustmenavbar ul {
+  display:block;
+  position:static;
+  width:100%;
+  height:auto;
+  border:none;
+  padding:0px;
+  margin:0px;
+ }
+
+#trustmenavbar ul li {
+  display:list-item;
+  position:static;
+  float:none;
+  height: auto;
+  margin: 0px;
+  padding:0px;
+  width:100%;
+  font-weight:bold;
+  background-color:#bdf;
+  border: none;
+}
+
+#trustmenavbar a {
+  display: block;
+  width:100%;
+  height:40px;
+  text-align:left;
+  line-height: 35px;
+  margin: 0px;
+  padding: auto;
+  padding: 0px;
+  padding-left:14%;
+  border: none;
+  font-size: 0.9em;
+}
+
+#trustmenavbar span {
+  display: block;
+  width:95%;
+  height: 40px;
+  text-align:left;
+  margin: 0px;
+  padding: 0px;
+  line-height: 35px;
+  padding-left:14%;
+  border: none;
+  font-size: 0.9em;
+}
+
+
+
+/* Submenu styling */
+#trustmenavbar ul li ul li {
+  height: 35px;
+  background-color:#CCEEFF;
+}
+
+#trustmenavbar ul li span {
+  line-height: 40px;
+  background-image: url('{{ "/" | absolute_url }}assets/img/triangle_right.png');
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+
+#trustmenavbar ul li.active span {
+  background-image: url('{{ "/" | absolute_url }}assets/img/triangle_down_white.png');
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+
+#trustmenavbar ul li ul li a {
+  padding-left: 22%;
+}
+
+/* Show/Hide submenus */
+#trustmenavbar ul li ul {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#trustmenavbar ul li:hover ul, #trustmenavbar ul li.active ul {
+  position: static;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 600ms, visibility 600ms;
+}
+
+
+/* Pseudo-class styling */
+#trustmenavbar ul li a:active {
+  margin: 0px;
+  border-radius: 0px;
+  border: none;
+  background-color: #77AACC;
+}
+#trustmenavbar ul li a:hover {
+  margin: 0px;
+  border-radius: 0px;
+  border: none;
+  color: gray;
+  background-color: white;
+}
+
+#trustmenavbar ul li span:hover {
+  color: gray;
+  background-image: url('{{ "/" | absolute_url }}assets/img/triangle_down.png');
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-color: white;
+}
+
+#trustmenavbar ul li.active a:hover {
+  margin: 0px;
+  border-radius: 0px;
+  border: none;
+  color: gray;
+}
+
+/* Styling of active menu items */
+#trustmenavbar > ul > li.active {
+  background-color: gray;
+  color: white;
+}
+
+#trustmenavbar > ul > li.active > a{
+  color: white;
+}
+
+
+#trustmenavbar > ul > li > ul > li.active {
+  background-color: lightgray;
+  color: white;
+}
+
+/* Handle narrow browsers */
+@media print, screen and (max-width: 960px) {
+    header {
+    width: 760px !important;
+  }
+  
+  footer {
+    width: 760px !important;
+  }
+ 
+  section {
+    border: none;
+} 
+  #trustmenavbar {
+    height: 8em;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+   #trustmenavbar > ul {
+    line-height: auto;
+    padding:0px !important;
+    margin: 0px !important;
+    vertical-align: top;
+  }
+ 
+  #trustmenavbar > ul > li {
+    position: relative;
+    display: inline-block;
+    height:35px;
+    margin:0px !important;
+    padding:0px !important;
+    width:20%;
+    font-weight:bold;
+  }
+  #trustmenavbar > ul > li > a,
+  #trustmenavbar > ul > li > span,
+  #trustmenavbar > ul > li > ul > li a,
+  #trustmenavbar > ul > li > ul > li > span {
+    position: static;
+    text-align: center;
+    padding: 0px !important;
+    margin: 0px !important;
+    height: 35px;
+    width: auto;
+    line-height: 35px;
+  }
+
+/* Show/Hide submenus */
+#trustmenavbar > ul > li > ul,
+#trustmenavbar > ul > li.active > ul {
+  position: absolute;
+  top: 35px;
+  left: 0px;
+}
+  #trustmenavbar > ul > li:hover > ul {
+  position: absolute;
+  visibility: visible;
+  }
+/*
+#trustmenavbar ul li:hover ul, #trustmenavbar ul li.active ul {
+  position: relative;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 600ms, visibility 600ms;
+}
+
+ #trustmenavbar ul li ul {
+	border: 5px solid red;
+    position: static;
+    top: -5px;
+    left: 0px;
+    width: auto;
+    height: auto;
+    border-radius: 0px;
+  }
+
+
+  #trustmenavbar ul li ul li a{
+    display: block;
+    text-align: center;
+    border-radius: 0px;
+	width: auto;
+    background-color: #CCEEFF;
+  }
+
+   #trustmenavbar ul li ul li {
+    height: 35px;
+    border: 1px solid #bdf;
+    border-radius: 0px;
+	background-color: blue;
+  }
+
+  #trustmenavbar ul li ul li span {
+
+    padding-top: 0.8em;
+}
+
+  #trustmenavbar ul li ul {
+    display: block;
+  }
+*/
+}
