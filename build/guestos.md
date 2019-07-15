@@ -1,7 +1,7 @@
 ---
 ---
 
-# Create new Guest OS
+# Create new Guest Operating Systems
 
 This page describes the process of creating a new guest OS to be used in trust\|me containers.
 It is possible to build a new guest OS using Yocto or by hand using a rootfs image. Both possibilities are described here.
@@ -32,15 +32,16 @@ bitbake trustx-cml-initramfs
 ```
 Now you can use the new guest OS when creating containers as described [here]({{ "/" | absolute_url }}/operate).
 
-## Manually
+## Manually / Using a pre-built docker image
 Prerequisites:
 * The software signing certificate and key. If you use the auto-generated PKI the files needed are 'ssig.key' and 'ssig.cert'
 * The signing scripts located at <yocto workspace directory>/trustme/build/device_provisioning/oss_enrollment/config_creator/
-* A root file system image, in the following called root.img
-* An example guest OS config, for example the config located at <yocto workspace directory>/trustme/build/config_overlay/x86/trustx-coreos.conf
+* A root file system image, in the following called root.img (e.g. created using docker build + docker export)
+* An example guest OS config, for example the config located at "<yocto workspace directory>/trustme/build/config_overlay/x86/trustx-coreos.conf"
 
 Steps to manually create a guest OS
 
+## Create rootfs using docker
 1. Adapt the example guest OS config
 	* Change the 'name' field to a name of your choice
 	* (Optional) Adapt the 'mounts' entries to your needs.
@@ -53,3 +54,5 @@ Steps to manually create a guest OS
 4. Create a directory for your guest OS root.img, e.g. /data/cml/operatingsystems/trustx-customos-1
 5. Copy your root.img to the newly created directory
 6. Create a new container using your guest OS as described [here]({{ "/" | absolute_url }}operate)
+
+## Using Docker converter from local registry

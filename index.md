@@ -1,42 +1,72 @@
 ---
 ---
+- TOC
+{:toc}
 
 # What is trust|me
 
-trust\|me abbreviates "trusted mobile equipment" and is a OS-level virtualization solution. It is based on Linux specific features like namespaces, cgroups and capabilities to provide isolation of different guest Operating System Stacks on top of one Linux kernel. Devices are virtualized either directly in the OS kernel or with a proxy/server in the Android HAL. The picture below shows the System Architecture of trust\|me.
-The trust\|me platform was originally developed to separate Android OS stacks. Afterwards it was extended to support arbitrary x86 Linux systems.
+trust\|me abbreviates "trusted mobile equipment" and is a
+multi-arch OS-level virtualization solution with additional
+focus on platform security based on hardware features.
+The core component, the virtualization layer, is based on
+Linux-specific features like namespaces, cgroups and
+capabilities to provide isolation of different Guest
+Operating System (GuestOS) stacks on top of a single, shared Linux kernel.
+In contrast to other _container_ solutions like Docker,
+trust\|me provides a small software stack footprint and additional
+separation of privileged instances.
+The below illustration shows the system architecture of trust\|me.
 
-> **Note**: Android is supported on the Google Nexus 5X (bullhead) and Nexus 5 (hammerhead) devices only!
+<img alt="trustme system architecture" src="img/architecture-tee-left.png" width="75%">
 
-![trustme system architecture](https://github.com/trustm3/trustme_main/raw/master/doc/architecture.png)
+User interaction (e.g. admin access through ssh) may not directly end up in the
+privileged root namespace. For that purpose a less privileged _core container_
+exists, which is already _namespaced_ and my interact
+with the privileged virtualization layer through a single specified interface only.
+This can be compared to the dom0 approach of Xen.
 
-A detailed introduction to the used concepts is provided in
-[trustme.pdf](https://github.com/trustm3/trustme_main/raw/master/doc/trustme.pdf)
+A detailed introduction to the core concepts of the OS-Level virtualization
+and separation of privileged instances is provided in [this slideset](https://github.com/trustm3/trustme_main/raw/master/doc/trustme.pdf).
+The document is centered around the lagacy Android-based version of trust\|me, however the
+core concepts likewise apply to the current version.
 
-# IDS / Trusted Connector
+Furthermore, special platform security features are
+directly integrated into the virtualizaion layer in form of services
+utilizing a TPM chip and other platform
+dependent hardware-based security mechanisms.
+In a nutshell, trust\|me offers the following security features:
 
-The trust\|me code base is also used for our platform reference implementation for an IDS connector.
-The [Industrial Data Space (IDS)](http://www.industrialdataspace.org/en/)
-provides concepts for a generic shared data cloud in the IoT context.
-The following figure shows the generic architecture of trust\|me
+### Security features
+* solid container isolation based on modularized OS-level virtualization
+* secure boot (e.g. using UEFI on x86)
+* kernel module signing
+* signed GuestOSes (containers)
+* measured boot and remote attestation
+* full disk encryption coupled to TPM and secure boot.
 
-![trust\|me system architecture](https://github.com/trustm3/trustme_main/raw/master/doc/trust-x-ids.png)
+# Use cases
 
-We reuse only the container management layer of trust\|me (ramdisk). The whole Android high level user space stack is
-replaced by a generic GNU user space stack. The "business logic" which is not part of this code release is implemented
-on a generic JAVA stack inside the GNU containers.
+| __Application separation.__ Similar to Docker trust\|me can be used to separate applications in server environments, however providing a full system inside a container closer  to type 1 hypervisors such as Xen. | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/tux_logo.png" width="15%"> |
+| __IoT edge devices.__ Its stripped-down version -- just a kernel and a small ramdisk as virtualization layer -- targets embedded systems which can be used in the IoT context for edge devices. trust\|me also provides the reference implementation for the so-called Trusted Connector in the Industrial Data Space. The [Industrial Data Space](http://www.industrialdataspace.org/en/) provides concepts for a generic, shared data cloud for the (industrial) Internet of Things | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/logo.png" width="15%">| 
+| __Smartphones.__ Due to its history, formerly designed for Smartphones, it could still run on those devices to provide a container execution environment for background containers. Nevertheless, it is also feasible to separate user containers with different security requirements.| <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/android_logo.png" width="15%">|
 
-Since on IoT Gateways no user interaction and thus no user authentication is needed, we do not need a
-smartcard daemon. However platform authentication is required to allow remote connectors to communicate with each other.
-For this purpose a TPM 2.0 chip is used. Currently the code base includes a tpm2simulator based on the work
-[stwagnr/tpm2simulator] (https://github.com/stwagnr/tpm2simulator).
+# Supported platforms
+The trust\|me software stack runs on following hardware platforms:
+
+|Architecture|Device|Secure boot implementation|
+|--|--------------------|----------|
+| x86 32/64 | Native Intel PC | UEFI Secure Boot |
+| x86 32/64 | Qemu | TianoCore (simulated UEFI secure boot and sTPM)|
+| ARM 64 | Xilinx Zynq ZCU104 | coming soon (Xilinx and Uboot Secure Boot) |
+| ARM 32 | Nexus 5/5X | no longer supported (legacy Android build) |
+
 
 # Publications
 
 |Year|Title|Authors|PDF|
 |--|--------------------|----------|--------|
-| 2018	| An Ecosystem and IoT Device Architecture for Building Trust in the Industrial Data Space | Brost, Gerd Huber, Manuel Weiß, Michael Protsenko, Mykolai Schütte, Julian Wessel, Sascha | [https://doi.org/10.1145/3198458.3198459](https://doi.org/10.1145/3198458.3198459)|
+| 2018	| An Ecosystem and IoT Device Architecture for Building Trust in the Industrial Data Space | Gerd Brost, Manuel Huber, Michael Weiß, Mykolai Protsenko, Julian Schütte, Sascha Wessel | [https://doi.org/10.1145/3198458.3198459](https://doi.org/10.1145/3198458.3198459)|
 |2017 | Freeze & Crypt: Linux Kernel Support for Main Memory Encryption | Manuel Huber, Julian Horsch, Junaid Ali, Sascha Wessel, | [http://dx.doi.org/10.5220/0006378400170030](http://dx.doi.org/10.5220/0006378400170030) |
 | 2015 | A Secure Architecture for Operating System-Level Virtualization on Mobile Devices | Manuel Huber, Julian Horsch, Michael Velten, Michael Weiß, Sascha Wessel | [http://dx.doi.org/10.1007/978-3-319-38898-4_25](http://dx.doi.org/10.1007/978-3-319-38898-4_25) |
-| 2015 | Improving mobile device security with operating system-level virtualization (Jornal) | Sascha Wessel, Manuel Huber, Frederic Stumpf, Claudia Eckert | [https://doi.org/10.1016/j.cose.2015.02.005](https://doi.org/10.1016/j.cose.2015.02.005) |
+| 2015 | Improving mobile device security with operating system-level virtualization (Journal) | Sascha Wessel, Manuel Huber, Frederic Stumpf, Claudia Eckert | [https://doi.org/10.1016/j.cose.2015.02.005](https://doi.org/10.1016/j.cose.2015.02.005) |
 | 2013 |	Improving Mobile Device Security with Operating System-Level Virtualization | Sascha Wessel, Frederic Stumpf, Ilja Herd, Claudia Eckert |	[https://doi.org/10.1007/978-3-642-39218-4_12](https://doi.org/10.1007/978-3-642-39218-4_12) |

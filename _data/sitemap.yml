@@ -6,39 +6,44 @@ pages:
    pages:
 
  - category:
-   name: Setup Host
+   name: Build Environment
    url: setup_host
    pages:
 
-# - category:
-#   name: PKI
-#   url: pki
-#   pages:
- 
+ - category:
+   name: PKI
+   url: pki
+   pages:
+
  - category:
    name: Build
    group: build
    pages:
-   - name: Build
+   - name: Quick Build
+     url: build/quickbuild
+   - name: Base System
      url: build/build
-   - name: Create GuestOS
-     url: build/guestos
+   - name: Smartphones (depct'd)
+     url: build/android
 
  - category:
    name: Deploy
    group: deploy
    pages:
-   - name: Deploy on x86
-     url: deploy/x86
-#   - name: Deploy on Xilinx
-#     url: deploy/xilinx
    - name: QEMU/KVM
      url: deploy/qemu
+   - name: x86 Devices
+     url: deploy/x86
+   - name: "ARM: Xilinx"
+     url: deploy/xilinx
+   - name: Smartphones (depct'd)
+     url: deploy/smartphone
 
-# - category:
-#   name: Provisioning
-#   url: provisioning
-#   pages:
+
+ - category:
+   name: Roll-out
+   url: provisioning
+   pages:
 
  - category:
    name: Operate

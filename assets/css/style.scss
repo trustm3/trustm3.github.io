@@ -269,3 +269,34 @@ footer {
   }
 */
 }
+
+// Adding 'Contents' headline to the TOC
+#markdown-toc::before {
+    content: "Contents";
+    font-weight: bold;
+}
+
+
+// Using numbers instead of bullets for listing
+#markdown-toc ul {
+    /* list-style: decimal; */
+    list-style: none;
+}
+
+#markdown-toc li {
+    /* list-style: decimal; */
+    list-style: none;
+}
+#markdown-toc {
+    border: 1px solid #aaa;
+    margin-left: 1em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    /* list-style: none; */
+    display: inline-block;
+    width: 240px;
+    position: right;
+    float: right;
+}

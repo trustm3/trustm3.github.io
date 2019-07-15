@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon head tag -->
+    <link rel="icon" href="{{ "/img/trustme-logo.png" | absolute_url }}" type="image/x-icon">
 
 {% seo %}
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
@@ -14,11 +16,12 @@
   <body>    
     <div class="wrapper">   
       <header>
-        <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
+        <h1><a href="{{ "/" | absolute_url }}">
+		<img src="{{"/img/trustme-logo.png" | absolute_url }}" alt="Logo"  width=100 />
+		{{ site.title | default: site.github.repository_name }}
+		</a>
+	</h1>
         
-        {% if site.logo %}
-          <img src="{{site.logo | relative_url}}" alt="Logo" />
-        {% endif %}
 	<div id="trustmenavbar">
 		<ul>
 			{%- for item in site.data.sitemap.pages -%}
