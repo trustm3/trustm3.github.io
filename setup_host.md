@@ -32,7 +32,7 @@ docker build -t trustx-builder .
 4. Start Docker
 ```
 cd ~/ws-yocto/trustme/build/yocto/docker
-./run-docker ~/ws-yocto
+./run-docker.sh ~/ws-yocto
 ```
 5. Follow build instruction from [Setup Yocto environment](/build/build#setup-yocto-environment) inside the Docker container
 
