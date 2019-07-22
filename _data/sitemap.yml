@@ -5,6 +5,11 @@ pages:
    url: index
    pages:
 
+- category:
+   name: Background
+   url: background
+   pages:
+
  - category:
    name: Build Environment
    url: setup_host

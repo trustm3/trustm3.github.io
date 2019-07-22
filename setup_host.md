@@ -56,7 +56,7 @@ apt-get install repo python-protobuf python3-protobuf
 
 ### IDS trusted connector specific requirements (optionally)
 Install the following software packages for a Yarn-based
-build of the Trusted Connector core compartment
+build of the [Trusted Connector](/index#use-cases) core compartment.
 Note that this step is already included in Docker-based environment above.
 
 
