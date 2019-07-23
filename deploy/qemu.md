@@ -54,7 +54,6 @@ The following example runs a trust\|me image using the TPM emulator and enabling
 sudo kvm -m 4096 -bios OVMF.fd -serial mon:stdio \
     -device virtio-rng-pci \
     -device virtio-scsi-pci,id=scsi \
-    -device scsi-hd,drive=hd0 \
     -device scsi-hd,drive=hd0 -drive if=none,id=hd0,file=tmp/deploy/images/trustx-corei7-64/trustme_image/trustmeimage.img,format=raw \
     -device scsi-hd,drive=hd1 -drive if=none,id=hd1,file=containers.btrfs,format=raw \
     -net nic -net user,hostfwd=tcp::8181-:8181,hostfwd=tcp::2323-:22 \
