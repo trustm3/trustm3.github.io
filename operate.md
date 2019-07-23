@@ -150,6 +150,16 @@ files from either the download URL provided in the `guestos.conf` or the default
 download url in the CML's `device.conf`. If an older version is already installed an
 update would be triggered after a reboot of the whole system.
 
+* Remove/Delete a GuestOS
+```
+control remove_guestos <guestos name>
+```
+Deletes the GuestOS by the given `guestos name`. All associated files such as
+configuration, signature and shared images files are removed permanently.
+If the guest OS is still in use by any container, this command will do nothing.
+In that case you have to delete all remaining containers which use the GuestOS
+with `control remove` see above.
+
 
 
 ## Containers and guest operating systems
@@ -196,7 +206,8 @@ Similar to container configuration also direct access to guestos specific config
 files is not possible from core0 container.
 Intended control is through the control interface.
 
-The corresponding commands of the control tool are `ca_register`, `push_guestos_config` `list_guestos`
+The corresponding commands of the control tool are `ca_register`,
+`list_guestos`, `push_guestos_config` and `remove_guestos`:
 
 **ca_register** is used to install a new root certificate inside the CML.
 Thus, it is possible to provide customer specific GuestOSes, signed by
@@ -209,6 +220,7 @@ the already installed GuestOSes which have a valid signature.
 to update existing ones. The `cmld` checks if the config contains a valid
 signature and matches the included image hashes, before accepting the new/updated GuestOS.
 
+**remove_guestos**  is used to remove GuestOSes.
 
 ## Example: Using GuestOS debos
 The GuestOS debos provides a basic integrity protected debian installer

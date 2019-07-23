@@ -27,7 +27,7 @@ In the following, we take a closer look at the two hierarchies.
 
 The _Software Signing Root CA_ serves as root of trust for the trust\|me base system software.
 This CA can create different _Software Signing Sub CAs_ that can be used to sign the kernel, virtualization
-layer, or core container when building the trust\me base system.
+layer, or core container when building the trust\|me base system.
 On a secured platform, the base system needs to be started first and verified during the boot of a device.
 The illustration exemplifies an UEFI Secure Boot case where the public keys of the Software Signing Sub CA can
 be stored in the UEFI _Signature Database_. Note that, the UEFI Secure Boot requires to set a platform-individual

@@ -16,9 +16,9 @@ At the first boot, trust\|me automatically boots into a provisioning mode.
 In this mode, the virtualization layer exposes additional functionality to the core container via the control
 interface.
 At that time, the deployed trust\|me base system is equipped with the software signing trust anchor and is
-thus capable of starting the core container. To allow running other GuestOSs, you can add the GuestOS signing trust
+thus capable of starting the core container. To allow running other GuestOSes, you can add the GuestOS signing trust
 anchors to the certificate store in the virtualization layer (via the control interface). This allows the
-virtualization layer to verify any GuestOSs that can be added to the system via the core container at any
+virtualization layer to verify any GuestOS that can be added to the system via the core container at any
 time.
 
 Further, the virtualization layer initializes the TPM and creates a device CSR corresponding to a TPM-bound
