@@ -137,7 +137,7 @@ Persistently
 sbsign --key test_certificates/ssig_subca.key \
       --cert test_certificates/ssig_subca.cert \
       --output linux.sigend.efi \
-      ws-yocto/out-yocto/tmp/deploy/images/intel-corei7-64/bzImage-initramfs-intel-corei7-64.bin
+      ws-yocto/out-yocto/tmp/deploy/images/trustx-corei7-64/cml-kernel/bzImage-initramfs-trustx-corei7-64.bin
 ```
 
-   To boot the signed kernel using UEFI, it should be placed as /EFI/BOOT/BOOTX64.EFI on the UEFI system partition.
+To boot the signed kernel using UEFI, it should be placed as /EFI/BOOT/BOOTX64.EFI on the UEFI system partition.
