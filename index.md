@@ -15,7 +15,7 @@ Operating System (GuestOS) stacks on top of a single, shared Linux kernel.
 In contrast to other _container_ solutions like Docker,
 trust\|me provides a small software stack footprint and additional
 separation of privileged instances.
-The below illustration shows the system architecture of trust\|me.
+The illustration below shows the system architecture of trust\|me.
 
 <img alt="trustme system architecture" src="img/architecture-tee-left.png" width="75%">
 
