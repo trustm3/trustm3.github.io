@@ -21,7 +21,7 @@ The illustration below shows the system architecture of trust\|me.
 
 User interaction (e.g. admin access through ssh) may not directly end up in the
 privileged root namespace. For that purpose a less privileged _core container_
-exists, which is already _namespaced_ and my interact
+exists, which is already _namespaced_ and may interact
 with the privileged virtualization layer through a single specified interface only.
 This can be compared to the dom0 approach of Xen.
 
@@ -65,7 +65,7 @@ For more information on trust\|me and OS-Level virtualization, [read our backgro
 
 # Use cases
 
-| __Application separation.__ Similar to Docker trust\|me can be used to separate applications in server environments, however providing a full system inside a container closer to type 1 hypervisors such as Xen. | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/tux_logo.png" width="15%"> |
+| __Application separation.__ Similar to Docker trust\|me can be used to separate applications in server environments, yet providing a full system inside a container closer to type 1 hypervisors such as Xen. | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/tux_logo.png" width="15%"> |
 | __IoT edge devices.__ Its stripped-down version -- just a kernel and a small ramdisk as virtualization layer -- targets embedded systems which can be used in the IoT context for edge devices. trust\|me also provides the reference implementation for the so-called Trusted Connector in the Industrial Data Space. The [Industrial Data Space](http://www.industrialdataspace.org/en/) provides concepts for a generic, shared data cloud for the (industrial) Internet of Things | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/logo.png" width="15%">| 
 | __Smartphones.__ Due to its history, formerly designed for Smartphones, it could still run on those devices to provide a container execution environment for background containers. Nevertheless, it is also feasible to separate user containers with different security requirements.| <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/android_logo.png" width="15%">|
 
