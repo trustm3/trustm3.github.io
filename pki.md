@@ -55,7 +55,7 @@ from source, if not yet generated. Leaving the solution unmodified, automatic ge
 results in a _development_ PKI instantiation (possibly not yet applicable for productive use).
 Especially, this means that private keys are stored locally on the filesystem.
 
-### Manually generate development PKI manually from source
+### Manually generate development PKI from source
 
 You can also build our PKI solution manually and tailor it to the specific requirements you have.
 For instance, you might want to generate/store root CA keys in HSMs, or adapt signing algorithms and
