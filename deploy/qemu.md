@@ -61,4 +61,4 @@ sudo kvm -m 4096 -bios OVMF.fd -serial mon:stdio \
     -tpmdev emulator,id=tpm0,chardev=chrtpm \
     -device tpm-tis,tpmdev=tpm0
 ```
-
+
