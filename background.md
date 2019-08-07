@@ -7,7 +7,7 @@ Initially developed for mobile device, trust\|me sought to run multiple, systema
 single device. Motivated by the bring your own device problematic in enterprises, a prevalent use case was running a business
 and private Android instance on a single smartphone. Opposed to other approaches, trust\|me used OS-level
 virtualization capabilities of the Linux kernel, allowing to run the Android instances in _containers_ (using
-the namespaces and cgroups features). To systematically isolate the containers, trustm\|me leveraged the
+the namespaces and cgroups features). To systematically isolate the containers, trust\|me leveraged the
 cgroups devices subsystem, Linux capabilities, SELinux and implemented an LSM stacking to enforce SELinux
 policies both inside containers and globally.
 
