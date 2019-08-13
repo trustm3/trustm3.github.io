@@ -53,18 +53,29 @@ In future builds, trust\|me will allow storing these  keys in Secure Elements.
 At every container start, the password for the softtoken must be provided via the core
 container to the virtualization layer, which unlocks the softtoken or Secure Element, respectively.
 
-### Change the softtoken password
-You can change the password in the virtualization layer by running `openssl` during
-provisioning mode or at the debug shell in development builds.
-
-    # unwrap existing token
-    openssl pkcs12 -in /data/cml/tokens/testuser.p12 -out /tmp/mycert.pem -nodes
-    # rewrap existing token, set new password
-    openssl pkcs12 -export -out /data/cml/tokens/testuser.p12 -in tmp/mycert.pem
-    # remove temp file
-    rm /tmp/mycert.pem
-
 ### Complete self-provisioning
 Just reboot the system after finishing initial provisioning with shell
 
     reboot
+
+## Change the softtoken password
+There are two options to change the passphrase of the softtoken.
+
+### 1. Control Interface
+You can just use the control tool to change the token's passhprase
+at any time, either during provisioning or later on during normal operation by:
+```
+control change_pin
+```
+
+### 2. Oppenssl tool
+You can change the password in the virtualization layer by running `openssl` during
+provisioning mode or at the debug shell in development builds.
+```
+# unwrap existing token
+openssl pkcs12 -in /data/cml/tokens/testuser.p12 -out /tmp/mycert.pem -nodes
+# rewrap existing token, set new password
+openssl pkcs12 -export -out /data/cml/tokens/testuser.p12 -in tmp/mycert.pem
+# remove temp file
+rm /tmp/mycert.pem
+```
