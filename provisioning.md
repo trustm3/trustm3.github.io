@@ -68,7 +68,7 @@ at any time, either during provisioning or later on during normal operation by:
 control change_pin
 ```
 
-### 2. Oppenssl tool
+### 2. Openssl tool
 You can change the password in the virtualization layer by running `openssl` during
 provisioning mode or at the debug shell in development builds.
 ```
