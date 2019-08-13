@@ -38,7 +38,6 @@ repo init -u https://github.com/trustm3/trustme_main.git -b master \
      -m yocto-arm64-zcu104-zynqmp.xml
 repo sync -j8
 source init_ws.sh out-yocto arm64 zcu104-zynqmp
-bitbake multiconfig:pmu:pmu-firmware
 bitbake multiconfig:container:trustx-core
 bitbake trustx-cml
 ```

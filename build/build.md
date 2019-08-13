@@ -56,6 +56,7 @@ source init_ws.sh out-yocto <architecture> <machine>
 If you want to use an own PKI, place the necessary files in the directory `ws-yocto/out-yocto/test_certificates`.
 For information on which files are needed, please refer to the [PKI section](/pki/pki).
 
+<!--
 ## Build PMU firmware
 > Xilinx ZCU104 specific
 
@@ -63,6 +64,7 @@ The ZCU104 board needs a fimware file for it's PMU. To generate this file, run t
 ```
 bitbake multiconfig:pmu:pmu-firmware
 ```
+-->
 
 ## Include containers to trust\|me image
 These commands install guest operating systems and containers (e.g. the IDS container) to your trust\|me platform.
