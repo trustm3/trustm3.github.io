@@ -32,6 +32,8 @@ This command starts the container with the given UUID. In order to do so, the co
 The optional `--setup` parameter allows you to manipulate 
 the containers root file system tree including all encrypted overlays mounted at `/setup`.
 This could be used to bootstrap an encrypted container, see [example: Using GuestOs debos](#example-using-guestos-debos).
+`--key` specifies the Passphrase/PIN for the softtoken used for container en/decryption,
+use e.g. for default self-provisioned device `--key=trustme`.
 
 * Stop container:
 ```
@@ -160,6 +162,34 @@ If the guest OS is still in use by any container, this command will do nothing.
 In that case you have to delete all remaining containers which use the GuestOS
 with `control remove` see above.
 
+* Get Certificate request of Device
+```
+control pull_csr <device.csr>
+```
+During provisioning mode (first boot of device) it is posible to
+sign a device private key with a customer CA. This command pulls
+the corresponding csr from the virtualization layer and
+stores the csr in the provided file name `<device.csr>`.
+
+* Store the signed device certificate
+```
+control push_cert <device.cert>
+```
+This command pushes back a device certificate provided in file `<device.cert>`.
+Remember, you have to provide your own mechanism to transfer and sign
+the certification request to your CA. Further, you have to store the
+corresponding Customer CA root certificate in the trusted CA store, see `control ca_register`.
+
+
+
+* Change the softtoken's PIN/Passphrase
+```
+control change_pin
+```
+This command provides an interactive prompt for old and new
+Pin/Passphrase for the softtoken. Remember, the softtoken is used for
+wrapping the container encryption keys and must be provided to container
+start. (default passphrase after self-provisioning is `trustme`
 
 
 ## Containers and guest operating systems
