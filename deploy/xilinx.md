@@ -29,10 +29,10 @@ The provided script takes care of expanding the partitions to usea all of the av
 sudo copy_image_to_disk_mbr.sh <trustme-image> </path/to/target/device>
 ```
 
-If you have built from source in `ws-yocto` and your target device is `/dev/mmc0` the command would be:
+If you have built from source in `ws-yocto` and your target device is `/dev/mmcblk0` the command would be:
 ```
 cd ws-yocto # your yocto workspace directory
-sudo copy_image_to_disk_mbr.sh trustmeimage.img /dev/mmc0
+sudo copy_image_to_disk_mbr.sh out-yocto/tmp/deploy/images/zcu104-zynqmp/trustme_image/trustmeimage.img /dev/mmcblk0
 ```
 
 <!--
