@@ -13,7 +13,7 @@ Supported devices are:
 * Nexus 5X (bullhead) (Android 7.1.2)
 
 ## Prepare your build machine
-In the following, we briefly describe the setup on the example of debian 8 (jessie).
+In the following, we briefly exemplify the setup of debian 8 (jessie).
 For ubuntu have a look at [AOSP Initialize Build Environment](https://source.android.com/source/initializing.html)
 
 ### Install standard packages
@@ -27,7 +27,7 @@ For debian 8 (stable) this would be:
         protobuf-compiler protobuf-c-compiler bc lzip
         
 If you followed the AOSP instructions at 
-[AOSP Initialize Build Environment](https://source.android.com/source/initializing.html), you need the
+[AOSP Initialize Build Environment](https://source.android.com/source/initializing.html), you need to install the
 following addtional packages for trust|me
 
     apt-get install qemu-user-static parted qemu-user texlive-latex-base re2c python-protobuf \
@@ -62,7 +62,7 @@ For more information on repo see [AOSP Download Source](https://source.android.c
     
     
 ## Checkout and prepare build of trust|me
-The trustme branches are named after the corresponding aosp tag on which it is based. Currently
+The trust|me branches are named after the corresponding aosp tags on which they are based. Currently
 there are two branches for Android version 5.1.1 and 7.1.2:
 *trustme-7.1.2_r33-github* and *trustme-5.1.1_r38-github*
 
@@ -80,12 +80,12 @@ container encryption.
 
     trustme/build/device_provisioning/test_certificates/test_passwd_env.bash
     
-The generated user token is not used by default as the device generates its one token during first boot.
-However there exits provisioning scripts which will replace the usertoken or you can replace it manually
+The generated user token is not used by default as the device generates its own token during first boot.
+However there are provisioning scripts which will replace the usertoken or you can replace it manually
 after deployment as described in [Change default usertoken password](../deploy/smartphone#change-default-usertoken-password).
 
 ### Enable GApps as feature
-If you want to be able to use gapps inside of your containers
+If you want to be able to use gapps inside of your containers,
 you have to download the corresponding gapps package to your workspace.
 See [gapps for 7.1.2](https://github.com/trustm3/trustme_build/tree/trustme-7.1.2_r38-github/gapps)
 
