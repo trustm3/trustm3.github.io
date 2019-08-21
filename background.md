@@ -7,7 +7,7 @@ Initially developed for mobile device, trust\|me sought to run multiple, systema
 single device. Motivated by the bring your own device problematic in enterprises, a prevalent use case was running a business
 and private Android instance on a single smartphone. Opposed to other approaches, trust\|me used OS-level
 virtualization capabilities of the Linux kernel, allowing to run the Android instances in _containers_ (using
-the namespaces and cgroups features). To systematically isolate the containers, trust\|me leveraged the
+namespaces and cgroups features). In order to systematically isolate these containers, trust\|me leveraged the
 cgroups devices subsystem, Linux capabilities, SELinux and implemented an LSM stacking to enforce SELinux
 policies both inside containers and globally.
 
@@ -16,7 +16,7 @@ performance, allowing seamless container switches and almost native user experie
 model where one container was in the foreground at a time, appearing at the display, while others were in the
 background and could be toggled by a long power button press.
 
-Following such an approach, however, several technical challenges requiring intense development efforts arise
+Following this approach, however, several technical challenges requiring intense development efforts arise
 when using mobile device with trust\|me in practice.
 The first challenge is to determine the hardware devices a container may use, for instance, the Wi-Fi, radio,
 GPS or bluetooth peripherals. As soon as multiple containers may use hardware devices, access to them must be
@@ -39,7 +39,7 @@ containerization solutions on the market. We target x86 and embedded Linux platf
 like Debian inside containers and neither requiring tedious OS modifications, massive hardware device
 virtualization nor a container foreground-background model.
 
-This makes trust\|me more lean, easier to maintain and easier applicable on a wide range of x86 and ARM
+This makes trust\|me more lean, easier to maintain and easier to apply on a wide range of x86 and ARM
 platforms.
 As trust\|me was always developed as a security-centric solution, we designed a modular privileged
 virtualization layer and moved all components, critical yet not necessarily required as part of this layer to
@@ -55,4 +55,4 @@ within hardware-isolated boundaries.
 A detailed introduction to the core concepts of the OS-Level virtualization
 and separation of privileged instances in trust\|me is provided in [this slideset](https://github.com/trustm3/trustme_main/raw/master/doc/trustme.pdf).
 The document is centered around the legacy Android-based version of trust\|me, however the
-core concepts likewise apply to the current version.
+core concepts apply likewise to the current version.
