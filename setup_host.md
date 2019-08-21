@@ -30,7 +30,7 @@ cd ~/ws-yocto/trustme/build/yocto/docker
 docker build -t trustx-builder .
 ```
 4. Start Docker
-Please ensure you are logged in as a non-root user. Otherwise, bitbake will refuse to run. A tutorial how to run docker as a normal user can be found [here](https://docs.docker.com/install/linux/linux-postinstall/)
+Please ensure you are logged in as a non-root user. Otherwise, bitbake will refuse to run. A tutorial on how to run docker as a normal user can be found [here](https://docs.docker.com/install/linux/linux-postinstall/)
 ```
 cd ~/ws-yocto/trustme/build/yocto/docker
 ./run-docker.sh ~/ws-yocto
@@ -57,7 +57,7 @@ apt-get install repo python-protobuf python3-protobuf
 ### IDS trusted connector specific requirements (optionally)
 Install the following software packages for a Yarn-based
 build of the [Trusted Connector](/index#use-cases) core compartment.
-Note that this step is already included in Docker-based environment above.
+Note that this step is already included in the Docker-based environment above.
 
 
 1. Install Java 8 JDK and additional dependencies
