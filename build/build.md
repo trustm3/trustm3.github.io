@@ -5,14 +5,14 @@
 
 # Build trust|me
 
-The steps to build trust\|me are very similar for each flavour of the platform such as core, IDS, etc. The difference between the flavours are the containers installed to trust\|me. To build the trust\|me flavour you're interested in, select the appropriate containers in [the corresponding build step](#include-containers-to-trustme-image).
+The steps to build trust\|me are very similar for each flavour of the platform such as core, IDS, etc. The difference between these flavours are the containers installed on trust\|me. In order to build the trust\|me flavour you're interested in, select the appropriate containers in [the corresponding build step](#include-containers-to-trustme-image).
 If you just want to try out trust\|me the core flavour is the best option for you.
 
 > Some build steps are architecture / device dependent. These steps are only necessary for that specific architecture / device.
 
 ## Prerequisites
 
-The following prerequisites are necessary for all trust\|me flavours. Please make sure your build host meets these requirements:
+The following prerequisites are necessary for **all** trust\|me flavours. Please make sure your build host meets these requirements:
    * Build host configuration as described in section [Setup Host]({{ "/" | absolute_url }}setup_host)
    * Sufficient hard disk space, at least 100 GB
    * Sufficient RAM. We tested the build on a VM having 4 GB RAM. However, a build host with less RAM should also work.
@@ -53,14 +53,14 @@ source init_ws.sh out-yocto <architecture> <machine>
 > This automatically switches to out-yocto
 
 ## Optional: Use own PKI
-If you want to use an own PKI, place the necessary files in the directory `ws-yocto/out-yocto/test_certificates`.
-For information on which files are needed, please refer to the [PKI section](/pki/pki).
+If you want to use your own PKI, place the necessary files into the directory `ws-yocto/out-yocto/test_certificates`.
+For more information on which files are needed, please refer to the [PKI section](/pki/pki).
 
 <!--
 ## Build PMU firmware
 > Xilinx ZCU104 specific
 
-The ZCU104 board needs a fimware file for it's PMU. To generate this file, run the following command
+The ZCU104 board needs a fimware file for it's PMU. Run the following command to generate this file:
 ```
 bitbake multiconfig:pmu:pmu-firmware
 ```
@@ -68,7 +68,7 @@ bitbake multiconfig:pmu:pmu-firmware
 
 ## Include containers to trust\|me image
 These commands install guest operating systems and containers (e.g. the IDS container) to your trust\|me platform.
-To make trust\|me work out of the box, use exactly one of the following commands.
+In order to make trust\|me work out of the box, use exactly **one** of the following commands.
 Experienced users may choose to include all containers. However this will require manual configuration of the platform.
 
 Build and include the minimal core container
@@ -95,13 +95,13 @@ bitbake multiconfig:container:docker-convert
 
 ## Build trust\|me image
 This step builds all necessary packages needed for trust\|me and generates a bootable image that can be deployed to the boot medium of your platform.
-In order to do so please refer to the [Deploy section](/deploy/x86)
+In order to do so, please refer to the [Deploy section](/deploy/x86)
 
 ```
 bitbake trustx-cml
 ```
 ## Build installer image
-If required, a bootable installer image can be created. This image can be used to boot the target platform and install trust\|me to the internal disk as described in the [Deploy section](/deploy/x86)
+If required, a bootable installer image can be created. This image can be used to boot the target platform and install trust\|me on the internal disk as described in the [Deploy section](/deploy/x86)
 > Currently, the installer medium is only available for x86 platforms
 
 ```
@@ -113,7 +113,7 @@ bitbake trustx-installer
 > x86 UEFI specific
 
 Create a bootable image containing the KeyTool and the trust\|me secure boot keys.
-This image can be used to configure secure boot on your platform as described in section [Deploy](/deploy/x86)
+This image can be used to configure secure boot on your platform as described in section [Deploy](/deploy/x86).
 ```
 bitbake trustx-keytool
 ```
@@ -142,4 +142,4 @@ sbsign --key test_certificates/ssig_subca.key \
       ws-yocto/out-yocto/tmp/deploy/images/trustx-corei7-64/cml-kernel/bzImage-initramfs-trustx-corei7-64.bin
 ```
 
-To boot the signed kernel using UEFI, it should be placed as /EFI/BOOT/BOOTX64.EFI on the UEFI system partition.
+In order to boot the signed kernel using UEFI, it should be placed as /EFI/BOOT/BOOTX64.EFI on the UEFI system partition.
