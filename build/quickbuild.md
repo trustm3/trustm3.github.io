@@ -7,7 +7,7 @@
 
 This section sums up the necessary steps to build trust\|me on different architectures.
 For a detailed explanation of each build step please refer to the [build section](/build/build)
-and assure [prerequisites](/build/build#prerequisites).
+and make sure [prerequisites](/build/build#prerequisites) have been met.
 
 
 ## x86 platforms
@@ -23,8 +23,8 @@ bitbake trustx-cml
 bitbake trustx-keytool
 ```
 
-To create a bootable installation medium to install trustme to an internal disk,
-also execute the following command.
+In order to create a bootable installation medium for installing trust|me on an internal disk,
+also execute the following command:
 ```
 bitbake multiconfig:installer:trustx-installer
 ```
