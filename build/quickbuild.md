@@ -23,7 +23,7 @@ bitbake trustx-cml
 bitbake trustx-keytool
 ```
 
-In order to create a bootable installation medium for installing trust|me on an internal disk,
+In order to create a bootable installation medium for installing trust\|me on an internal disk,
 also execute the following command:
 ```
 bitbake multiconfig:installer:trustx-installer
