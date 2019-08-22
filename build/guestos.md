@@ -7,26 +7,26 @@ This page describes the process of creating a new guest OS to be used in trust\|
 It is possible to build a new guest OS using Yocto or by hand using a rootfs image. Both possibilities are described here.
 
 ## Using Yocto
-In order to create a new guest OS using Yocto, a new bitbake file has to be created. As a starting point the bitbake file for the 'trustx-coreos' guest OS can be used. This file is located at *\<yocto workspace directory\>/meta-trustx/images/trustx-core.bb*. To add a new guest OS copy this file into the same folder and rename it.
+In order to create a new guest OS using Yocto, a new bitbake file has to be created. As a starting point the bitbake file for the 'trustx-coreos' guest OS can be used. This file is located at *\<yocto workspace directory\>/meta-trustx/images/trustx-core.bb*. In order to add a new guest OS copy this file into the same folder and rename it.
 ```
 cp <yocto workspace directory>/meta-trustx/images/trustx-core.bb <yocto workspace directory>/meta-trustx/images/trustx-custom.bb
 ```
 > Note: Although this approach is sufficient for testing, the Yocto way of adding your own .bb files would be to create and apply a new Yocto layer as described [here](https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#understanding-and-creating-layers)
 
-Before building the new guest OS, a config file has to be created for it.
+Before building the new guest OS, a config file has to be created.
 Again you may use the trustx-coreos config file as a starting point.
 ```
 cp <yocto workspace directory>/trustme/build/config_overlay/x86/trustx-coreos.conf <yocto workspace directory>/trustme/build/config_overlay/x86/trustx-customos.conf
 ```
 The new config file has to be adapted to suit your needs. At least the 'name' field has to be changed to your OS name, e.g. 'custom'.
 
-At this point the new guest OS is ready for build and you can customize by adding and removing features, customizing the build process, etc. For information on how to do this, please refer to the [Yocto manual](https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html).  
+At this point the new guest OS is ready for build and you can customize by adding and removing features, tailor the build process to your needs, etc. For information on how to do this, please refer to the [Yocto manual](https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html).  
 After editing the guest OS' bitbake file, rebuild it by running
 
 ```
 bitbake multiconfig:container:trustx-custom
 ```
-To include the guest OS to your trust|\me distro, also rebuild the initramfs:
+In order to include the guest OS to your trust|\me distro, also rebuild the initramfs:
 ```
 bitbake trustx-cml-initramfs
 ```
