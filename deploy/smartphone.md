@@ -39,7 +39,7 @@ and rebuild the userdata image
 ### Flash device
 #### Unlock hammerhead
 
-To be able to flash trustme on the hammerhead device the bootloader has to be unlocked:
+In order to be able to flash trust\|me on the hammerhead device the bootloader has to be unlocked:
 
 get device into fastboot mode: "Press and hold both Volume Up and Volume Down, then press and hold Power"
 
@@ -60,7 +60,7 @@ Plugin mobile phone to USB port on PC
     
 #### Change default usertoken password
 Now you have deployed a development release to your device. The device generates a user token which
-is used to encrypt the containers data with the default password **trustme**.
+is used to encrypt the container's data with the default password **trustme**.
 If you want to use the phone for real user data, you are strongly advised to change the password of this
 token before you start any container for the fist time!
 
