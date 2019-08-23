@@ -21,7 +21,12 @@
 		{{ site.title | default: site.github.repository_name }}
 		</a>
 	</h1>
-        
+
+	<ul class="downloads">
+	  <li><a href="{{site.githuborg}}/{{site.repository}}/releases/tag/{{site.release_tag}}">Download <strong>Release</strong></a></li>
+	  <li><a href="{{site.githuborg}}/">View On <strong>Github</strong></a></li>
+	</ul>
+
 	<div id="trustmenavbar">
 		<ul>
 			{%- for item in site.data.sitemap.pages -%}

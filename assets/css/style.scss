@@ -8,12 +8,17 @@
 }
 
 section {
-  width: 770px !important;
+  width: 750px !important;
 }
 
 header {
-  width: 180px !important;
+  width: 200px !important;
+
 }
+
+header ul { width: 200px; }
+header li { width: 99px; }
+header ul li + li { border-right: none; width: 99px; }
 
 footer {
   width: 180px !important;
