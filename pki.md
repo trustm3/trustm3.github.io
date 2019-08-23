@@ -1,6 +1,9 @@
 ---
 ---
 
+- TOC
+{:toc}
+
 # Overview of the trust\|me PKI solution
 <img alt="trustme pki architecture" src="img/pki_trustm3.png" width="55%">
 

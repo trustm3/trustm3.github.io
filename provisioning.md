@@ -1,16 +1,20 @@
 ---
 ---
 
+- TOC
+{:toc}
+
 # Roll-out and Provisioning
+{:.no_toc}
 
 For secure roll-out and provisioning, several steps in a secure environment are required.
 
-### Set secure boot keys
+## Set secure boot keys
 
 Before deploying the base system, set the trust anchors of the software signing PKI, e.g., in UEFI variables.
 Set other required keys, e.g., the KEK and PK.
 
-### Boot into provisioning mode
+## Boot into provisioning mode
 
 At the first boot, trust\|me automatically boots into a provisioning mode.
 In this mode, the virtualization layer exposes additional functionality to the core container via the control
