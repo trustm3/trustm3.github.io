@@ -6,7 +6,18 @@
 
 # Run trust\|me image in QEMU/KVM (x86-64)
 Before following these steps you need to create the partitioned trust\|me image as described in [Build]({{ "/" | absolute_url }}build/build)  
+or download a released image from Github.
+
+> **Current pre-built release image**: \\
+[trustmeimage-{{site.release_tag}}_x86_trustx-corei7-64.img.bz2]({{site.githuborg}}/{{site.repository}}/releases/download/{{site.release_tag}}/trustmeimage-{{site.release_tag}}_x86_trustx-corei7-64.img.bz2) \\
+[trustmeinstaller-{{site.release_tag}}_x86_trustx-corei7-64.img.bz2]({{site.githuborg}}/{{site.repository}}/releases/download/{{site.release_tag}}/trustmeinstaller-{{site.release_tag}}_x86_trustx-corei7-64.img.bz2)
+
+
 In first place, you need to install QEMU/KVM and OVMF UEFI.
+> **Note for Ubuntu users:** With the ovmf packet from the Ubuntu
+repositories the trustme image won't start.
+Download the debian buster packet here: [packages.debian.org/buster/all/ovmf/download](https://packages.debian.org/buster/all/ovmf/download) and install it via dpkg.
+
 ```
 apt-get install qemu-kvm ovmf
 ```
