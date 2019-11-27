@@ -39,6 +39,8 @@ pages:
      url: deploy/qemu
    - name: x86 Devices
      url: deploy/x86
+   - name: "ARM: rpi"
+     url: deploy/rpi
    - name: "ARM: Xilinx"
      url: deploy/xilinx
    - name: Smartphones (depct'd)

@@ -3,18 +3,16 @@
 - TOC
 {:toc}
 
-# Deploy trust\|me on Xilinx Zynq platforms
+# Deploy trust\|me on Raspberry Pi platforms
 {:.no_toc}
 
-This section describes how to deploy trust\|me on a Xilinx Zynq platform.
+This section describes how to deploy trust\|me on Raspberry Pi platforms.
 
 > **Current pre-built release image**: \\
-[trustmeimage-{{site.release_tag}}_arm64_zcu104-zynqmp.img.bz2]({{site.githuborg}}/{{site.repository}}/releases/download/{{site.release_tag}}/trustmeimage-{{site.release_tag}}_arm64_zcu104-zynqmp.img.bz2
-)
+[trustmeimage-{{site.release_tag}}_arm32_raspberrypi2.img.bz2]({{site.githuborg}}/{{site.repository}}/releases/download/{{site.release_tag}}/trustmeimage-{{site.release_tag}}_arm32_raspberrypi2.img.bz2)\\
+[trustmeimage-{{site.release_tag}}_arm64_raspberrypi3-64.img.bz2]({{site.githuborg}}/{{site.repository}}/releases/download/{{site.release_tag}}/trustmeimage-{{site.release_tag}}_arm64_raspberrypi3-64.img.bz2)
 
 ## Create bootable medium
-
-
 
 ### Requirements
 * A successfully built trust\|me image file (trustmeimage.img), either downloaded from [Github Release]({{site.githuborg}}/{{site.repository}}/releases/tag/{{site.release_tag}}) or built following the instructions [here]({{ "/" | abolute_url }}build/build#build-trustme-image).
@@ -36,36 +34,32 @@ sudo copy_image_to_disk_mbr.sh <trustme-image> </path/to/target/device>
 ```
 
 If you have built from source in `ws-yocto` and your target device is `/dev/mmcblk0` the command would be:
+- **Raspberry Pi2**
 ```
 cd ws-yocto # your yocto workspace directory
-sudo copy_image_to_disk_mbr.sh out-yocto/tmp/deploy/images/zcu104-zynqmp/trustme_image/trustmeimage.img /dev/mmcblk0
+sudo copy_image_to_disk_mbr.sh \
+	out-yocto/tmp/deploy/images/raspberrypi2/trustme_image/trustmeimage.img \
+	/dev/mmcblk0
 ```
-
-<!--
-### Copy BOOT.BIN to the MicroSD card
-The Zynq boards need a BOOT.BIN file to boot. Copy this file from your board's BSP to the partition 1 of the SD card
-
+- **Raspberry Pi3**
 ```
-mount </path/to/target/device> <mount point>
-# e.g. mount /dev/mmc0p1 <mount point
-sudo cp <path/to/BOOT.BIN> <mount point>
-sync
-umount <mount point>
+cd ws-yocto # your yocto workspace directory
+sudo copy_image_to_disk_mbr.sh \
+	out-yocto/tmp/deploy/images/raspberrypi3-64/trustme_image/trustmeimage.img \
+	/dev/mmcblk0
 ```
--->
 
 ## Boot trust|me
 
-Connect a monitor to the display port and a keyboard to the USB connector of your
-Xilinx board. For an early boot debug shell, also connect the Xilinx board to your host machine via the onboard serial-to-usb converter using e.g. Minicom. Then boot the board from the MicroSD card.
-For instructions on how to do this, please refer to the board's manual.
+Connect a monitor to the HDMI port and a keyboard to the USB connector of your Raspberry Pi
+ board.
 
 After boot a shell in the management container (c0) will be available at tty1.
 Also a debug shell into the CML will be available at tty12.
 Further, the init log messages will appear on tty11.
 
-If you have setup the serial connector, the early boot messages of arm-trusted-firmware, OpTEE,
-u-boot and the Linux kernel will be printed on serial console. After boot also a CML shell will
-become available on the serial console.
+> **Note**: On first boot several keys are generated, thus it may take a long
+time untill login prompt may appear. You can accelerate the progress by generating
+randomness with the connected keyboard.
 
 For instructions on how to operate trust\|me please refer to section [Operate](/operate).

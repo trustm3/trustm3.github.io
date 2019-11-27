@@ -29,6 +29,8 @@ Please refer to the following list to select the correct manifest file:
 
 |Manifest file | Description |
 |--------------|---------------------------|
+|**yocto-arm32-raspberrypi2.xml**|Raspberry Pi2
+|**yocto-arm64-raspberrypi3-64.xml**|Raspberry Pi3
 |**yocto-arm64-zcu104-zynqmp.xml**|The Xilinx ZCU104 Evaluation Board
 |**yocto-x86-trustx-corei7-64.xml**|Any x86 based plattform supporting UEFI
 
@@ -45,6 +47,8 @@ The following architectures and devices are supported currently:
 |Architecture|Machine|
 |----|---------------|
 |x86| trustx-corei7-64|
+|arm32|raspberrypi2|
+|arm64|raspberrypi3|
 |arm64|zcu104-zynqmp|
 
 ```

@@ -12,7 +12,10 @@ For secure roll-out and provisioning, several steps in a secure environment are 
 ## Set secure boot keys
 
 Before deploying the base system, set the trust anchors of the software signing PKI, e.g., in UEFI variables.
-Set other required keys, e.g., the KEK and PK.
+Set other required keys, e.g., the KEK and PK. See [Secure Boot Configuration]({{ "/" | abolute_url }}deploy/x86#secure-boot-configuration)
+> **Note:** If you use release images from Github add the following public key to your efi db\\
+> [ssig_subca.esl]({{site.githuborg}}/{{site.repository}}/releases/download/v0.1/ssig_subca.esl)
+(sha256: b52d9451de399ac5ce8d443ff0e118295b2ad9f08d781e53bc8d662c83ac341)
 
 ## Boot into provisioning mode
 
