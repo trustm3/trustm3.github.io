@@ -10,9 +10,11 @@
 ## Containers and guest operating systems
 
 Each container has a corresponding configuration file defining its key features.
-Every container runs a certain operating system, which has also to be defined in a configuration file.
+Every container runs a certain operating system, which also has to be defined in a configuration file.
 Note that several containers may run the same operating system.
-Both container and OS configuration file formats are composed of several '<key>: <value>' lines.
+
+Both container and OS configuration file formats are composed of several ```key: value``` lines.
+A detailed description of the container configuration can be found [here](container_config); the guestOS configuration is described [here](guestos_config.)
 
 ## Basic trust|me operation
 
