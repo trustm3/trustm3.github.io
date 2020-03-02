@@ -4,7 +4,7 @@
 - TOC
 {:toc}
 
-## GuestOS configuration
+# GuestOS configuration
 
 An operating system configuration is defined in the `<os-name>-<os-version>.conf` in the `/data/cml/operatingsystems/` folder. The configuration includes OS name and version, supported hardware type, description of mounted images, init process path and parameters, build date, and others. Descriptions of mounted images include their hashes, size, and file system type.
 
@@ -35,11 +35,91 @@ optional bytes icon // name of icon file
 optional string build_date // build date
 
 optional string	update_base_url // provide url to file server which hosts the actual image data (overwrites device.conf)
+```
+The original Protobuf formatted file can be found [here](https://github.com/trustm3/device_fraunhofer_common_cml/blob/trustx-master/daemon/guestos.proto).
 
 
+### Parameter ```mounts```
+The repeated ```mounts``` parameter list all mounts inside the container and is of type ```GuestOSMount``` which is specified as follows:
+
+```protobuf
+message GuestOSMount {
+	// Path for the image files is derived from guestos_path/guestos_name.
+	required string image_file = 1; // name of the image file, e.g. system
+	required string mount_point = 2; // mountpoint inside the container
+	required string fs_type = 3; // file system type, e.g. "ext4"
+
+	enum Type {
+		SHARED = 1; // image shared by all containers of same OS type
+		DEVICE = 2; // image file is copied from a device partition
+		DEVICE_RW = 3; // image file is copied from a device partition
+		EMPTY = 4;  // empty, created when a corresponding container is first instantiated
+		COPY = 5;   // deprecated
+		FLASH = 6;	// image to be flashed to a partition (e.g. boot.img; base system updates only for now)
+		OVERLAY_RO = 7; // read only overlay images e.g. for system features
+		SHARED_RW = 8; // image shared by all containers of same OS type (writable tmpfs as overlay)
+		OVERLAY_RW = 9; // similar to EMPTY image, however overlayed on given mount_point (writable persitent fs as overlay)
+		BIND_FILE = 10;
+		BIND_FILE_RW = 11;
+	}
+	required Type mount_type = 4;   // type of the image file
+
+	// The following three fields are only used for EMPTY mount types:
+	optional uint32 min_size = 6 [default = 10];	// required minimum size (MBytes) for EMPTY partition
+	optional uint32 max_size = 7 [default = 16384]; // allowed maximum size (MBytes) for EMPTY partition
+	optional uint32 def_size = 8 [default = 1024];  // default size (MBytes) for EMPTY partition
+
+	// The following two fields are only used when an actual image file is provided:
+	optional uint64 image_size = 10;     // size (bytes) of the image
+	optional string image_sha1 = 11; // must NOT be used anymore
+	optional string image_sha2_256 = 12;
+
+	optional string mount_data = 13;  // mount_data used for mount syscall, e.g. "context=" for selinux
+}
+```
+The ```image_sizes``` parameters of a [container configuration](operate/container_conf) must respect the minimal maximal sizes as defined in the respective GuestOS configuration.
+
+### Parameter ```mounts_setup```
+The repeated ```mounts_setup``` parameter list all mounts inside a container for its setup mode.
+See [basic operation documentation](operate/control) for information on the different states of a container.
+
+### Parameters ```init_param``` and ```init_env```
+```init_param```is used to provide parameters to init.
+```init_env``` is used to set environment variables.
+> Note that both are repeated strings. Therefore, every part of the overall string you want to pass on must be encompassed by its own ```init_param```/```init_env``` parameter!
+
+### Example GuestOS configuration
+The following example depicts a configuration for Debian as GuestOS:
+```
+name: "deb"
+hardware: "x86"
+version: 1
+init_path: "/sbin/init"
+mounts_setup {
+	image_file: "root"
+	mount_point: "/"
+	fs_type: "squashfs"
+	mount_type: SHARED_RW
+}
+mounts {
+	image_file: "enc_root"
+	mount_point: "/"
+	fs_type: "ext4"
+	mount_type: EMPTY
+}
+mounts {
+	image_file: "tmpfs"
+	mount_point: "/data/"
+	fs_type: "tmpfs"
+	mount_type: EMPTY
+	def_size: 12
+}
+description {
+	en: "gnu/debian userland (x86)"
+}
 ```
 
-The original Protobuf formatted file can be found [here](https://github.com/trustm3/device_fraunhofer_common_cml/blob/trustx-master/daemon/guestos.proto).
+## GuestOS configuration management
 
 Similar to container configuration also direct access to guestOS specific configuration files is not possible from core0 container.
 Intended control is granted through the control interface.
@@ -58,148 +138,4 @@ the already installed GuestOSes which have a valid signature.
 to update existing ones. The `cmld` checks if the config contains a valid
 signature and matches the included image hashes, before accepting the new/updated GuestOS.
 
-**remove_guestos**  is used to remove GuestOSes.
-
-## Example: Using GuestOS debos
-The GuestOS debos provides a basic integrity protected debian installer
-base image. This GuestOS type provides the ability to setup a
-confidential debian system inside a container.
-In order to achieve that, we use the setup mode for running a container instance of debos.
-
-### Prerequisites
-* a running (deployed) trust\|me system.
-* an installed debos image in that system   
-  You can verify this by checking:
- ```
-root@trustx-core:~# control list_guestos | grep debos
-     name: "debos"
-  ```
-* configured internet access in core0 (default is dhcp on eth0)
-* we assume a standard password for usertoken "trustme"
-
-
-### Creating container and installing debian
-create a new container config skeleton file `debian1.skel` for the container e.g.:
-```
-name: "debian1"
-guest_os: "debos"
-color: 0
-vnet_configs {
-    if_name: "eth0"
-    configure: true
-}
-image_sizes {
-    image_name: "enc_root"
-    image_size: 8192
-}
-```
-The images_size argument overwrites the standard size of the encrypted writable
-data image which is mounted as rootfs in case of normal boot.
-
-Create and start the container in setup mode:
-```
-control create debian1.skel
-control start debian1 --key=trustme --setup
-```
-You can verify that the container has reached setup state by:
-```
-control state debian1
-```
-Now you can run commands inside the container to install
-a standard Linux system to `/setup` inside the container.
-The debos image contains a debootstrap util inside the container to
-setup a debian system. However, you could also try to run any other
-bootstrapping tool for another distribution, e.g., emerge. In that case,
-you have to download the bootstrapper first, loosing integrity protection
-of the installer. We proceed with `debootstrap`.
-> Remember that control run is somewhat experimental and not all characters,
-especially control characters like [Ctrl]+C, may work as expected.
-
-```
-control run /bin/bash debian1
-``` 
-Now we are inside the container "debian1".   
-You can check if the encrypted root is mounted on setup by calling `mount`
-
-Install debian as follows:
-```
-export PATH=$PATH
-debootstrap stretch /setup
-printf '%s\n' '#!/bin/bash' '/sbin/cservice' 'exit 0' > /setup/etc/rc.local
-chmod a+x /setup/etc/rc.local
-exit
-```
-Now stop the container and start it normally:
-```
-control stop debian1
-control start debian1 --key=trustme
-```
-
-## Example: Using docker-convertos
-> **Experimental**, the converter may not work for every image on dockerhub!
-
-### Prerequisites
-* a running (deployed) trust\|me system.
-* an installed docker-convertos image in that system   
-  You can verify this by checking:
-  ```
-root@trustx-cml:~# control list_guestos | grep docker-convertos
-     name: "docker-convertos"
-  ```
-* configured internet access in core0 (default is dhcp on eth0)
-* we assume a standard password for usertoken "trustme"
-
-### Creating converter container
-Create a new container config skeleton file `docker2.skel` for the container e.g.:
-```
-name: "docker2"
-guest_os: "docker-convertos"
-color: 0
-vnet_configs {
-  if_name: "eth0"
-  configure: true
-}
-image_sizes {
-  image_name: "tmp"
-  image_size: 8192
-}
-```
-
-```
-control run /bin/bash docker2
-```
-Inside container:
-```
-export PATH=$PATH
-/etc/init.d/lighttpd start
-converter pull <dockerhub image> <tag>
-/etc/init.d/lighttpd stop
-exit
-```
-
-### Creating instance of converted image
-```
-control list_guestos
-```
-Should show new GuestOS created from Dockerhub image
-with a name like "`<image>_<tag>_<timestamp>`"
-
-Create a new config skeleton `/etc/templates/converted.skel` for the image:
-```
-name: "converted3"
-guest_os: "<image>_<tag>_<timestamp>"
-color: 0
-vnet_configs {
-  if_name: "eth0"
-  configure: true
-}
-```
-
-```
-control create converted.skel
-```
-Run it.
-```
-control start converted3 --key=trustme
-```
-
+**remove_guestos**  is used to remove GuestOSes.i
