@@ -8,6 +8,29 @@
 
 An operating system configuration is defined in the `<os-name>-<os-version>.conf` in the `/data/cml/operatingsystems/` folder. The configuration includes OS name and version, supported hardware type, description of mounted images, init process path and parameters, build date, and others. Descriptions of mounted images include their hashes, size, and file system type.
 
+## GuestOS configuration management
+
+Similar to container configuration also direct access to guestOS specific configuration files is not possible from core0 container.
+Intended control is granted through the control interface.
+
+The corresponding commands of the control tool are `ca_register`,
+`list_guestos`, `push_guestos_config` and `remove_guestos`:
+
+**ca_register** is used to install a new root certificate inside the CML.
+Thus, it is possible to provide customer specific GuestOSes, signed by
+a certificate from that CA.
+
+**list_guestos** provides the configuration in protobuf-text format of
+the already installed GuestOSes which have a valid signature.
+
+**push_guestos_config**  is used to install new GuestOSes as well as
+to update existing ones. The `cmld` checks if the config contains a valid
+signature and matches the included image hashes, before accepting the new/updated GuestOS.
+
+**remove_guestos**  is used to remove GuestOSes.
+
+
+## GuestOS configuration specification
 The full GuestOS configuration contains following fields:
 
 ```protobuf
@@ -39,7 +62,7 @@ optional string	update_base_url // provide url to file server which hosts the ac
 The original Protobuf formatted file can be found [here](https://github.com/trustm3/device_fraunhofer_common_cml/blob/trustx-master/daemon/guestos.proto).
 
 
-### Parameter ```mounts```
+### Parameter mounts
 The repeated ```mounts``` parameter list all mounts inside the container and is of type ```GuestOSMount``` which is specified as follows:
 
 ```protobuf
@@ -79,16 +102,16 @@ message GuestOSMount {
 ```
 The ```image_sizes``` parameters of a [container configuration](operate/container_conf) must respect the minimal maximal sizes as defined in the respective GuestOS configuration.
 
-### Parameter ```mounts_setup```
+### Parameter mounts_setup
 The repeated ```mounts_setup``` parameter list all mounts inside a container for its setup mode.
 See [basic operation documentation](operate/control) for information on the different states of a container.
 
-### Parameters ```init_param``` and ```init_env```
+### Parameters init_param and init_env
 ```init_param```is used to provide parameters to init.
 ```init_env``` is used to set environment variables.
 > Note that both are repeated strings. Therefore, every part of the overall string you want to pass on must be encompassed by its own ```init_param```/```init_env``` parameter!
 
-### Example GuestOS configuration
+## Example GuestOS configuration
 The following example depicts a configuration for Debian as GuestOS:
 ```
 name: "deb"
@@ -119,23 +142,3 @@ description {
 }
 ```
 
-## GuestOS configuration management
-
-Similar to container configuration also direct access to guestOS specific configuration files is not possible from core0 container.
-Intended control is granted through the control interface.
-
-The corresponding commands of the control tool are `ca_register`,
-`list_guestos`, `push_guestos_config` and `remove_guestos`:
-
-**ca_register** is used to install a new root certificate inside the CML.
-Thus, it is possible to provide customer specific GuestOSes, signed by
-a certificate from that CA.
-
-**list_guestos** provides the configuration in protobuf-text format of
-the already installed GuestOSes which have a valid signature.
-
-**push_guestos_config**  is used to install new GuestOSes as well as
-to update existing ones. The `cmld` checks if the config contains a valid
-signature and matches the included image hashes, before accepting the new/updated GuestOS.
-
-**remove_guestos**  is used to remove GuestOSes.i
