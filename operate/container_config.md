@@ -6,14 +6,29 @@
 
 # Container configuration
 
-## Run-time container configuration
 All containers currently available are defined in the configuration files in the form `<container-uuid>.conf` in the '/data/cml/containers/' folder. The `<container-uuid>` is a Universal Unique Identifier provided in five character groups separated by hyphens, e.g., 11111111-1111-1111-1111-111111111111.
 
+## Container configuration management
 Accessing those files directly is not possible from core0 container.
 Only in development builds with enabled `'debug-tweeks'`, you can access this
 through CML shell on tty12.
+Intended control of container configuration is gained through the control interface from within
+core0 container.
+The corresponding commands of the control tool are `create`, `config` and `update_config`
+
+**create** uses a container.config skeleton as shown above, and writes it to corresponding
+config files in `/data/cml/containers/` with a random uuid. The corresponding created config
+is also responded back to core0 through the control interface.
+> Note that the CML may modify certain fields of the provided configuration, such as the ```if_rootns_name```, if necessary.
+
+**config** requests the configuration from an existing container. Similar to
+the answer of create. You can write it to some location inside core0 to edit it.
+
+**update_config**  writes back an edited config or just overwrites the existing
+config by the provided skeleton.
 
 
+## Container configuration specification
 
 A full container configuration file includes the following (optional) fields:
 
@@ -58,27 +73,45 @@ repeated string fifos
 The full-blown protocol specification can be found [here](https://github.com/trustm3/device_fraunhofer_common_cml/blob/trustx-master/daemon/container.proto) as protobuf-text formatted file.
 
 
-### Parameter ```image_sizes```
+### Parameter image_sizes
 The ```image_sizes``` parameter defines the sizes of user partitions of the GuestOS. Its type ```ContainerImageSize``` is defined as follows:
 
 ```protobuf
 message ContainerImageSize {
 	required string image_name = 1; // virtual name of the image file in guestos
-	required uint64 image_size = 2; // size (bytes) of the image file
+	required uint64 image_size = 2; // size (Mbytes) of the image file
 	optional string image_file = 3; // name of alternate image file which overwrites image_name of guestos config
 }
 ```
 Valid configuration depends on the choice of the [GuestOS configuration](operate/guestos_config) and its ```mounts``` parameters.
+For example, the ```debos```  GuestOS configuration defines
+```
+mounts {
+	image_file: "enc_root"
+	mount_point: "/"
+	fs_type: "ext4"
+	mount_type: EMPTY
+}
+```
+and therefore, a container configuration that includes the ```debos``` GuestOS
+may include
+```
+image_sizes {
+	image_name: "enc_root"
+	image_size: "8192"
+}
+```
+to increase the size of the mount named "enc_root" from its default size defined in the GuestOS configuration to 8GiB.
 
-### Parameter ```net_ifaces```
+### Parameter net_ifaces
 The repeated ```net_ifaces``` parameter list host network interfaces that are assigned to the container. The interfaces are identified by their name as it is printed the ``` ip link``` command.
 
-### Parameter ```allow_dev``` and ```assign_dev```
+### Parameter allow_dev and assign_dev
 The repeated ```allow_dev``` parameter list host devices which the container is allowed to access.
 The repeated ```assign_dev``` parameter list host devices which the container is allowed to access.
 Devices are identified using the **cgroups** syntax.
 
-### Parameter ```vnet_configs```
+### Parameter vnet_configs
 The repeated ```vnet_configs```parameter list virtual network interface configuration.
 They are of type ```ContainerVnetConfig``` which is defined as
 
@@ -91,7 +124,7 @@ message ContainerVnetConfig {
 }
 ```
 
-### Parameter ```usb_configs```
+### Parameter usb_configs
 The repeated ```usb_config``` parameter list host USB devices which are assigned to the container.
 Their type is 
 
@@ -102,29 +135,44 @@ message ContainerUsbConfig {
 	required bool assign = 3 [default = false];
 }
 ```
-TODO
+The USB devices are identified by their major and minor number and their serial number. The necessary information can be found e.g by first identifying the number of the USB bus and the device number using the ```lsusb``` command.
+Using this information ```udevadm info /dev/bus/usb/<BUS_NR>/<DEV_NR>``` yields the desired information.
 
-### Parameter ```fifos```
-TODO
+An example for a valid ```usb_configs``` entry may look like this:
+```
+usb_confis {
+	id: "0x17ef:0x306c"
+	serial: "11AD1D009C9449100D8900B00"
+	assign: true
+}
+```
+
+### Parameter fifos
+The trust|me architecture enables the usage of unidrectional communication channels which can be used to transfer information from c0 to other containers but inhibits any information leakage from the containers.
+This feature can be used e.g. to inject external information on network state, such as DNS entries, from c0 into a container.
+The CML creates one Linux fifo for each ```fifos``` entry which are accessible under ```/dev/cfifos```.
 
 
+## Example container configuration
 
-
-
-### Example container configuration
-TODO
-The following example depicts a run-time configuration which includes two virtual ethernet interfaces and one USB device assigned to the container:
+The following example depicts a run-time configuration which includes two virtual Ethernet interfaces and one USB device assigned to the container:
 
 ```
 name: "core0"
-guest_os: "idsos"
+guest_os: "debos"
 guestos_version: 1
 color: 0
 type: CONTAINER
+image_sizes {
+	image_name: "enc_root"
+	image_size: "8192"
+}
 vnet_configs {
-  if_name: "eth0" 
+	if_name: "eth0"
 	configure: false
 	if_rootns_name: "r_0"
+	if_mac: "62:96:af:ab:7d:56"
+
 }
 vnet_configs {
 	if_name: "eth1"
@@ -135,33 +183,9 @@ usb_configs {
   id: "04e6:5816"
   serial: "5511747600021"
   assign: true
-assign_dev: "c 4:1 rwm"
-
-TODO: - assign_dev
-      - allow_dev (cgroups syntax)
-      - net_ifaces (einfach name, wie ip link)
-      - image_sizes
 }
+assign_dev: "c 4:1 rwm"
+allow_dev: "c 116:1 rw"
+net_ifaces: "eth2"
 ```
-
-## Container configuration skeleton
-A new container is created using the **create** command and supplying a configuration skeleton to it.
-While the above described run-time configuration of a container is syntactically compatible with the skeleton configuration they are semantically distinct and should not be confused!
-The user specifies the skeleton configuration according to his needs but ultimately the CML will generate the run-time configuration.
-The CML layer may modify the skeleton (e.g. overwrite the provided ```if_rootns_name``` with the next free ```r_*```) and/or enhance it with non user provided default parameters!
-
-## Container configuration management
-Intended control of container configuration is gained through the control interface from within
-core0 container.
-The corresponding commands of the control tool are `create`, `config` and `update_config`
-TODO: keine skeleton beschreibung, sondern config adaptiert von CML
-
-**create** uses a container.config skeleton as shown above, and writes it to corresponding
-config files in `/data/cml/containers/` with a random uuid. The corresponding created config
-is also responded back to core0 through the control interface.
-
-**config** requests the configuration from an existing container. Similar to
-the answer of create. You can write it to some location inside core0 to edit it.
-
-**update_config**  writes back an edited config or just overwrites the existing
-config by the provided skeleton.
+> **Caution**: This is just an exemplary configuration and must be adapted to the individual use-case!
