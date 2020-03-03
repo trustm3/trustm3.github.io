@@ -12,15 +12,15 @@ In order to achieve that, we use the setup mode for running a container instance
 
 ### Prerequisites
 * a running (deployed) trust\|me system.
-* an installed debos image in that system   
-  You can verify this by checking:
- ```
-root@trustx-core:~# control list_guestos | grep debos
-     name: "debos"
-  ```
 * configured internet access in core0 (default is dhcp on eth0)
 * we assume a standard password for usertoken "trustme"
+* an installed debos image in that system   
 
+ You can verify that debos is installed by:
+```
+root@trustx-core:~# control list_guestos | grep debos
+     name: "debos"
+```
 
 ### Creating container and installing debian
 create a new container config skeleton file `debian1.skel` for the container e.g.:
