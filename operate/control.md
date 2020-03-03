@@ -1,0 +1,201 @@
+---
+---
+
+- TOC
+{:toc}
+
+# Containers and GuestOSes
+{:.no_toc}
+
+## Containers and guest operating systems
+
+Each container has a corresponding configuration file defining its key features.
+Every container runs a certain operating system, which also has to be defined in a configuration file.
+Note that several containers may run the same operating system.
+
+Both container and OS configuration file formats are composed of several ```key: value``` lines.
+A detailed description of the container configuration can be found [here](container_config); the guestOS configuration is described [here](guestos_config).
+
+## Basic trust|me operation
+
+trust|me is operated using a socket-based interface. This interface is used by the *control*
+command-line tool, which is installed together with trust|me. It is available from the
+privileged container (core0) and the debugging shell of CML.
+This tool is just for basic usage and demonstration of the control interface.
+For productive use cases an implementation of the protobuf-based control interface should be
+used, for instance in a web-based UI.
+
+The *control* tool allows administration and configuration of the trust|me platform, such as creating and starting containers, running a given command inside a container, etc.  
+The available actions are listed below.
+
+Usually, container specific commands use the container-uuid as parameter to identify the
+corresponding container. However, for convenience also the container name could be used.
+However, if you have several containers with the same name, always the first matching
+one is used. In that case, you have to specify the UUID to address all containers.
+
+* Start container:
+```
+control start <container-uuid> --key=<token-key> [ --setup ]
+```
+This command starts the container with the given UUID. In order to do so, the container has to be created beforehand by 'control create'.
+The optional `--setup` parameter allows you to manipulate 
+the containers root file system tree including all encrypted overlays mounted at `/setup`.
+This could be used to bootstrap an encrypted container, see [example: Using GuestOs debos](#example-using-guestos-debos).
+`--key` specifies the Passphrase/PIN for the softtoken used for container en/decryption,
+use e.g. for default self-provisioned device `--key=trustme`.
+
+* Stop container:
+```
+control stop <container-uuid>
+```
+This command stops the currently running container with the given UUID
+
+* Create container configuration from the given template config file:
+```
+control create <config-template-file>
+```
+This generates a new container configuration with a random UUID.
+The configuration template file has to be given using protobuf-text syntax. It must contain at least the following:
+```
+name: "<container name>"
+guest_os: "<guest os name>"
+color: <color for UI as argb e.g. 0xff00ffff>
+```
+You can use `control list_guestos` to get the name for available GuestOSes.
+
+* Remove container:
+```
+control remove <container-uuid>
+```
+Deletes the given container completely including configuration, data images and corresponding wrapped keys.
+
+* Container current state:
+```
+control state <container-uuid>
+```
+This returns the current state of the given container. Possible states are:
+	- `STOPPED`: The container has either not been run, was explicitly stopped or the init process of the container exited
+	- `STARTING`: The container was started using 'control start' and the container manager is preparing to launch the container.
+	- `BOOTING`: The container manager finished preparing the container and the control was handed over to the container's init process
+	- `RUNNING`: The container was initialized successfully and is now running.
+	- `SETUP`: The container was initialized successfully and is now running in setup mode (target rootfs mounted at /setup)
+
+* List all available containers and their state:
+```
+control list
+```
+
+* Container config:
+```
+control config <container-uuid>
+```
+Prints the container config to stdout. This could be used for editing the current config.
+
+* Update a container configuration file
+```
+control update_config <container-uuid> --file=<container.conf>
+```
+Sends a new config file `container.conf` to the `cmld`. It is not applied to running
+containers directly. You have to stop the container and trigger a reload.
+* Reload container configuration
+```
+control reload
+```
+This command reloads all container configs of all conatiners in state `STOPPED`
+into the running `cmld`.
+   
+* Run command inside the specified container:
+```
+control run <command> [<arg_1> ... <arg_n>] <container-uuid>
+```
+**Experimental**, some characters especially control characters may not work as expected.    
+The given command is executed in the context of the given container. Before executing the command, the process is made session leader and get's a new PTY attached. 
+
+* Assign a network interface to the container with the specified UUID:
+```
+control assign_iface --iface <interface-name> <container-uuid> [--persistent]
+```
+The 'persistent' option also applies the change to the container's config file, such that the assignment persists container reboot
+
+* Un-assign a network interface to the container with the specified UUID:
+```
+control unassign_iface --iface <interface-name> <container-uuid> [--persistent]
+```
+The 'persistent' option also applies the change to the container's config file, such that the assignment persists container reboot.
+
+* List all network interfaces currently assigned to the container with the specified UUID:
+```
+control ifaces <container-uuid>
+```
+* Freeze container:
+```
+control freeze <container-uuid>
+```
+Currently not supported
+
+* Unfreeze container:
+```
+control unfreeze <container-uuid>
+```
+Currently not supported
+
+* List GuestOS configuration:
+```
+control list_guestos
+```
+Lists the configuration of all installed GuestOSes.
+
+* Register a new CA for GuestOS signature verification
+```
+control ca_register <ca.cert>
+```
+This command registers a new certificate in trusted CA store for allowed GuestOS signatures.
+
+* Install new GuestOS or update GuestOS
+```
+control push_guestos_config <guestos.conf> <guestos.sig> <guestos.pem>
+```
+This command can be used to push the specified GuestOS config, signature, and certificate files
+of a corresponding GuestOS. This would trigger a download of the corresponding GuestOS image
+files from either the download URL provided in the `guestos.conf` or the default
+download url in the CML's `device.conf`. If an older version is already installed an
+update would be triggered after a reboot of the whole system.
+
+* Remove/Delete a GuestOS
+```
+control remove_guestos <guestos name>
+```
+Deletes the GuestOS by the given `guestos name`. All associated files such as
+configuration, signature and shared images files are removed permanently.
+If the GuestOS is still in use by any container, this command will do nothing.
+In this case you have to delete all remaining containers using the GuestOS
+with `control remove`, see above.
+
+* Get Certificate request of Device
+```
+control pull_csr <device.csr>
+```
+During provisioning mode (first boot of device) it is posible to
+sign a device private key with a customer CA. This command pulls
+the corresponding csr from the virtualization layer and
+stores the csr in the provided file name `<device.csr>`.
+
+* Store the signed device certificate
+```
+control push_cert <device.cert>
+```
+This command pushes back a device certificate provided in file `<device.cert>`.
+Remember, you have to provide your own mechanism to transfer and sign
+the certification request to your CA. Further, you have to store the
+corresponding Customer CA root certificate in the trusted CA store, see `control ca_register`.
+
+
+
+* Change the softtoken's PIN/Passphrase
+```
+control change_pin
+```
+This command provides an interactive prompt for old and new
+Pin/Passphrase for the softtoken. Remember, the softtoken is used for
+wrapping the container encryption keys and must be provided to container
+start. (default passphrase after self-provisioning is `trustme`

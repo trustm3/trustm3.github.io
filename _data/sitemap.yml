@@ -54,5 +54,14 @@ pages:
 
  - category:
    name: Operate
-   url: operate
+   group: operate
    pages:
+   - name: Basic operation
+     url: operate/control
+   - name: Container configuration
+     url: operate/container_config
+   - name: GuestOS configuration
+     url: operate/guestos_config
+   - name: Examples 
+     url: operate/examples
+
