@@ -26,6 +26,7 @@ Also, an image holding the created containers is needed. Choose the image size l
 dd if=/dev/zero of=containers.btrfs bs=1M count=<space to be available for containers>
 mkfs.btrfs -L containers containers.btrfs
 ```
+> When running consecutive tests with different builds make sure you use  a clean "containers.btrfs" image each time!
 
 Now the trust\|me image can be booted as follows:   
 ```

@@ -14,10 +14,10 @@ and make sure [prerequisites](/build/build#prerequisites) have been met.
 ```
 mkdir ws-yocto
 cd ws-yocto
-repo init -u https://github.com/trustm3/trustme_main.git -b master \
-    -m yocto-x86-trustx-corei7-64.xml
+repo init -u https://github.com/trustm3/trustme_main.git -b zeus \
+    -m yocto-x86-genericx86-64.xml
 repo sync -j8
-source init_ws.sh out-yocto x86 trustx-corei7-64
+source init_ws.sh out-yocto x86 genericx86-64
 bitbake multiconfig:container:trustx-core
 bitbake trustx-cml
 bitbake trustx-keytool
