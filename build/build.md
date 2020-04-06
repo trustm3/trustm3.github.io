@@ -125,16 +125,24 @@ bitbake trustx-keytool
 
 # Build FAQ
 ## How to change kernel config
-Temporarily
+#### Temporarily
 ```
 bitbake -f -c menuconfig virtual/kernel
 bitbake -f virtual/kernel
 bitbake -f trustx-cml-initramfs
 ```
 
-Persistently
-* Add file to ws-yocto/meta-trustx/recipes-kernel/linux/files
-* Register new file in .bbappend files inside ws-yocto/meta-trustx/recipes-kernel/linux/
+#### Persistently
+The trust|me build system applies some kernel config fragments to the defconfig of your chosen ARCH by default.
+After setting up the yocto environment the fragments are located in subdirectories of ```<ws>/trustme/build/yocto/```.
+
+The following subdirectories contain the actual fragments which are applied in the same order as they are listed below:
+* generic/fragments
+* ARCH/fragments
+* ARCH/DEVICE/fragments
+
+If you wish to modify the kernel config permanently you may add a kernel config fragment file.
+Keep the ordering of the fragment application in mind to ensure no intended changes get overwritten by defaults.
 
 ## How to sign kernel+initramfs binary manually
 > x86 UEFI specific
