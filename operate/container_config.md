@@ -98,7 +98,7 @@ may include
 ```
 image_sizes {
 	image_name: "enc_root"
-	image_size: "8192"
+	image_size: 8192
 }
 ```
 to increase the size of the mount named "enc_root" from its default size defined in the GuestOS configuration to 8GiB.
