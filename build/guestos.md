@@ -7,29 +7,75 @@ This page describes the process of creating a new guest OS to be used in trust\|
 It is possible to build a new guest OS using Yocto or by hand using a rootfs image. Both possibilities are described here.
 
 ## Using Yocto
-In order to create a new guest OS using Yocto, a new bitbake file has to be created. As a starting point the bitbake file for the 'trustx-coreos' guest OS can be used. This file is located at *\<yocto workspace directory\>/meta-trustx/images/trustx-core.bb*. In order to add a new guest OS copy this file into the same folder and rename it.
-```
-cp <yocto workspace directory>/meta-trustx/images/trustx-core.bb <yocto workspace directory>/meta-trustx/images/trustx-custom.bb
-```
-> Note: Although this approach is sufficient for testing, the Yocto way of adding your own .bb files would be to create and apply a new Yocto layer as described [here](https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#understanding-and-creating-layers)
 
-Before building the new guest OS, a config file has to be created.
-Again you may use the trustx-coreos config file as a starting point.
-```
-cp <yocto workspace directory>/trustme/build/config_overlay/x86/trustx-coreos.conf <yocto workspace directory>/trustme/build/config_overlay/x86/trustx-customos.conf
-```
-The new config file has to be adapted to suit your needs. At least the 'name' field has to be changed to your OS name, e.g. 'custom'.
+This option mainly targets more advanced users. For information on Yocto, please refer to the [manual](https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html).  
 
-At this point the new guest OS is ready for build and you can customize by adding and removing features, tailor the build process to your needs, etc. For information on how to do this, please refer to the [Yocto manual](https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html).  
-After editing the guest OS' bitbake file, rebuild it by running
+### Preparing the build environment
+
+First, your build host needs to be prepared as described in section [Setup Host]({{ "/" | absolute_url }}setup_host)
+
+For the purpose of building both the Base system and guest Operating Systems, follow the instructions provided in chapter [Build Base System]({{ "/" | absolute_url }}build/build) and skip the rest of this subsection.
+
+In order to setup an environment for building guest operating systems only, follow the steps below.
+
+* Initialize and synchronize the repo:
 
 ```
-bitbake multiconfig:container:trustx-custom
+repo init -u https://github.com/trustm3/trustme_main.git -b zeus -m yocto-generic-container.xml
+repo sync -j8
 ```
-In order to include the guest OS to your trust|\me distro, also rebuild the initramfs:
+
+* Setup the environment specifying the target architecture:
+
 ```
-bitbake trustx-cml-initramfs
+source init_ws.sh out-yocto <architecture>
 ```
+Currently supported architectures are: *x86*, *arm32*, and *arm64*.
+
+
+### Create the image recipe
+
+Each guest operating system image has a corresponding Yocto recipe file, *<custom-image-name>.bb*. The trustme *meta-trustx* layer provides two standard image recipes:
+
+* A core container image recipe, *\<yocto workspace directory\>/meta-trustx/images/trustx-core.bb*
+* A service container image recipe, *\<yocto workspace directory\>/meta-trustx/images/trustx-service.bb*
+
+To create a custom image you can either modify the existing image recipes or create your own ones in your meta-layer, using the provided recipes as templates. For the most cases the latter option is recommended. To use the existing recipe as a template for your own, just copy the recipe file to the target meta layer and rename it, e.g.:
+
+```
+cp <yocto workspace directory>/meta-trustx/images/trustx-core.bb <yocto workspace directory>/<target-meta-layer>/images/<custom-image-name>.bb
+```
+
+### (Optional) Create custom guest OS and container configs
+
+For the guest operating system one can specify a custom guest OS and container configuration files, using the following definitions in the recipe file of the image:
+
+* Guest operating system configuration template: *GUESTOS_CONF_TEMPLATE = "<path-to-config-file>"*
+The specified config file will be used as a template, the guest operating system name will be automatically set to the recipe name: *<custom-image-name>os*
+
+* Container configuration template: *CONTAINER_CONF_TEMPLATE = "<path-to-config-file>"*
+The specified config file will be used as a template for the container hosting the operating system. The operating system for the container will be automatically set to the recipe name: *<custom-image-name>os*
+
+In case the container or guest OS configs are not specified as described above, the standard templates will be used to create configuration files during the build process.
+
+### Build guest OS image
+
+At this point the new guest OS is ready for build and you can customize by adding and removing features, tailor the build process to your needs, etc.
+
+You can build the image by calling the corresponding bitbake command:
+
+```
+bitbake multiconfig:container:trustx-<custom-image-name>
+```
+
+The image and configuration files will be located at *tmp_container/deploy/images/<architecture>/trustx-guests/* and *tmp_container/deploy/images/<architecture>/trustx-configs/container/*
+
+If you are also building the core system from source, in order to include the new guest OS to your trust|\me distro, also rebuild the core system image:
+```
+bitbake trustx-cml -cclean
+bitbake trustx-cml
+```
+
 Now you can use the new guest OS when creating containers as described [here]({{ "/" | absolute_url }}/operate).
 
 ## Manually / Using a pre-built docker image
