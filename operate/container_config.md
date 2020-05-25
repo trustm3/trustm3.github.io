@@ -140,7 +140,7 @@ Using this information ```udevadm info /dev/bus/usb/<BUS_NR>/<DEV_NR>``` yields 
 
 An example for a valid ```usb_configs``` entry may look like this:
 ```
-usb_confis {
+usb_configs {
 	id: "0x17ef:0x306c"
 	serial: "11AD1D009C9449100D8900B00"
 	assign: true
