@@ -28,6 +28,8 @@ pages:
      url: build/quickbuild
    - name: Base System
      url: build/build
+   - name: Guest OS
+     url: build/guestos
    - name: Smartphones (depct'd)
      url: build/android
 
