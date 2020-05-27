@@ -1,5 +1,7 @@
 ---
 ---
+- TOC
+{:toc}
 
 # Create new Guest Operating Systems
 
@@ -83,7 +85,7 @@ Prerequisites:
 * The software signing certificate and key. If you use the auto-generated PKI the files needed are 'ssig.key' and 'ssig.cert'
 * The signing scripts located at <yocto workspace directory>/trustme/build/device_provisioning/oss_enrollment/config_creator/
 * A root file system image, in the following called root.img (e.g. created using docker build + docker export)
-* An example guest OS config, for example the config located at "<yocto workspace directory>/trustme/build/config_overlay/x86/trustx-coreos.conf"
+* An example guest OS config, for example the config located at "<yocto workspace directory>/trustme/build/config_overlay/x86/trustx-coreos.conf" (see [GuestOS configuration]({{ "/" | absolute_url }}operate/guestos_config))
 
 Steps to manually create a guest OS
 
@@ -92,13 +94,14 @@ Steps to manually create a guest OS
 	* Change the 'name' field to a name of your choice
 	* (Optional) Adapt the 'mounts' entries to your needs.
 	* Set the 'image_size'. 'image_sha1' and 'image_sha2_256' values to match your root.img
-2. Sign the adapted guest OS config using the sign_config.sh scrip as follows:
+2. Sign the adapted guest OS config using the sign_config.sh script as follows:
 ```
 ./sign_config.sh <guest OS config> ssig.key ssig.cert
 ```
 3. Copy the created files to to /data/cml/operatingsystems, e.g. the files trustx-customos-1.conf, trustx-customos-1.cert and trustx-customos-1.sig
 4. Create a directory for your guest OS root.img, e.g. /data/cml/operatingsystems/trustx-customos-1
 5. Copy your root.img to the newly created directory
-6. Create a new container using your guest OS as described [here]({{ "/" | absolute_url }}operate)
+6. Create a new container using your guest OS as described [Basic operation]({{ "/" | absolute_url }}operate/control)
 
 ## Using Docker converter from local registry
+This is described in [Example: Using docker-convertos]({{ "/" | absolute_url }}operate/examples#example-using-docker-convertos)
