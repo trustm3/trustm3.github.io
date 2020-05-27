@@ -79,7 +79,7 @@ control stop debian1
 control start debian1 --key=trustme
 ```
 
-## Example: Using docker-convertos
+# Example: Using docker-convertos
 > **Experimental**, the converter may not work for every image on dockerhub!
 
 ### Prerequisites
