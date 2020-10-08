@@ -60,7 +60,7 @@ of the installer. We proceed with `debootstrap`.
 especially control characters like [Ctrl]+C, may work as expected.
 
 ```
-control run /bin/bash debian1
+control run debian1 /bin/bash
 ``` 
 Now we are inside the container "debian1".   
 You can check if the encrypted root is mounted on setup by calling `mount`
@@ -111,7 +111,7 @@ image_sizes {
 ```
 
 ```
-control run /bin/bash docker2
+control run docker2 /bin/bash
 ```
 Inside container:
 ```
