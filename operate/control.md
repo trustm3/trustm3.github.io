@@ -106,7 +106,7 @@ into the running `cmld`.
    
 * Run command inside the specified container:
 ```
-control run <command> [<arg_1> ... <arg_n>] <container-uuid>
+control run <container-uuid> <command> [<arg_1> ... <arg_n>]
 ```
 **Experimental**, some characters especially control characters may not work as expected.    
 The given command is executed in the context of the given container. Before executing the command, the process is made session leader and get's a new PTY attached. 
