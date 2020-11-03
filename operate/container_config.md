@@ -165,7 +165,7 @@ color: 0
 type: CONTAINER
 image_sizes {
 	image_name: "enc_root"
-	image_size: "8192"
+	image_size: 8192
 }
 vnet_configs {
 	if_name: "eth0"
