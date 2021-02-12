@@ -4,19 +4,33 @@
 # Hosted mode
 {:.no_toc}
 
+<<<<<<< HEAD
 trust|me containers can also be run natively on your host, using the hosted mode.
+=======
+Trustm3 containers can also be run natively on your host, using the hosted mode.
+>>>>>>> Add hosted mode description to github.io
 This section describes how to run the hosted mode.
 These instructions have been tested and work on Debian 10 stable. 
 
 ## Requirements
+<<<<<<< HEAD
 Have a prebuilt container image ready or build one yourself as described in [Build]({{ "/" | absolute_url }}build/build).
+=======
+Have a trustm3 build ready as described in [Build]({{ "/" | absolute_url }}build/build).
+>>>>>>> Add hosted mode description to github.io
 
 ### Required packages
 Install all required packages with the following command: 
 ```
+<<<<<<< HEAD
 apt-get install git build-essential unzip re2c pkg-config check \
     lxcfs libprotobuf-c-dev automake libtool libselinux1-dev \
     libcap-dev protobuf-c-compiler libssl-dev udhcpd udhcpd
+=======
+    apt install git build-essential unzip re2c pkg-config check lxcfs \ 
+                libprotobuf-c-dev automake libtool libselinux1-dev \
+                libcap-dev protobuf-c-compiler libssl-dev udhcpd udhcpd
+>>>>>>> Add hosted mode description to github.io
 ```
 ### Protobuf-c-text
 To install protobuf-c-text, run the following commands:
@@ -41,9 +55,18 @@ sudo make -f Makefile_lsb install
 
 ## Setup
 1. Run scd once to initialize /var/lib/cml/tokens 
+<<<<<<< HEAD
 3. You can either push your own certificate by using cml-control push_ca or copy the ssig_rootca.cert from your build to /var/lib/cml/tokens
 4. Run scd again, this time it will start a loop and keep running
 5. Run cmld and keep it running
 2. Install your guestos as described in [GuestOS configuration]({{ "/" | absolute_url }}operate/guestos_config)
 6. You can now use control as described in [Basic Operation]({{ "/" | absolute_url }}operate/control)
+=======
+2. Copy the ssig_rootca.cert from your build to /var/lib/cml/tokens
+3. Copy the operatingsystems directory from your build to /var/lib/cml, this should contain one .cert, one .conf one .sig file and a directory containing the root image.
+5. Copy the device.conf file from your build to /var/cml/ and append "hostedmode = true" to the file
+6. Run scd again, this time it will start a loop and keep running
+7. Run cmld and keep it running
+8. You can now use control as described in [Basic Operation]({{ "/" | absolute_url }}operate/control)
+>>>>>>> Add hosted mode description to github.io
 
