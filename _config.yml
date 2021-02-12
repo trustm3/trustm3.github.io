@@ -1,8 +1,79 @@
-theme: jekyll-theme-minimal
+# ----
+# Site
 
-title: trust|me
-description: This is the trust|me project documentation
-githuborg: https://github.com/trustm3
-repository: trustme_main
-release_tag: v0.1.1
-markdown: kramdown
+title: Trust|me
+url: "https://long-pig.cloudvent.net"
+baseurl:
+google_analytics_key:
+show_full_navigation: true
+
+# Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
+logo: img/trustme-logo.png
+description: Documentation for Trust|me
+author:
+  name:
+  email:
+  twitter: # twitter username without the @ symbol
+social:
+  name: Trustme
+  links:
+    - https://github.com/CloudCannon/edition-jekyll-template
+
+# -----
+# Build
+
+timezone: Etc/UTC
+
+permalink: pretty
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENCE
+
+collections:
+  docs:
+    title: Documentation
+    permalink: /:path/
+    output: true
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
+  -
+    scope:
+      path: ""
+      type: "docs"
+    values:
+      seo:
+        type: Article
+      _comments:
+        category: Group navigation links with this field
+        order: Used to sort links in the navigation
+      _options:
+        content:
+          width: 800
+          height: 2000
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      _comments:
+        type: Marks the impact of this release
+
+# -----------
+# CloudCannon
+
+types:
+  - minor
+  - major
