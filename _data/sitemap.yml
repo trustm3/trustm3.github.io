@@ -45,6 +45,8 @@ pages:
      url: deploy/rpi
    - name: "ARM: Xilinx"
      url: deploy/xilinx
+   - name: Hosted Mode
+     url: deploy/hosted
    - name: Smartphones (depct'd)
      url: deploy/smartphone
 
