@@ -42,7 +42,8 @@ required string guest_os
 optional uint64 guestos_version
 // complete image sizes from GuestOS for user partitions
 repeated ContainerImageSize image_sizes
-optional uint32 ram_limit [ default = 1024 ] // unit = MBytes
+// ram limit of container, set ram_limit to 0 for unlimited ram
+optional uint32 ram_limit [ default = 0 ];      // unit = MBytes
 required fixed32 color
 // type of container, e.g. KVM or CONTAINER
 required ContainerType type [ default = CONTAINER ]
@@ -63,10 +64,14 @@ repeated string allow_dev
 repeated string assign_dev
 // list of virtual network interface configuration
 repeated ContainerVnetConfig vnet_configs
-// list of usb devices assigned to this container 
+// list of usb devices assigned to this container
 repeated ContainerUsbConfig usb_configs
 // number of pipes from c0 to this container
 repeated string fifos
+// Specifies the container token type, e.g. NONE, SOFT or USB
+required ContainerTokenType token_type [ default = SOFT ];
+// Specifies that an external USB pin reader device is to be used for pin entry on container start and stop
+optional bool usb_pin_entry [ default = false ];
 }
 ```
 
@@ -125,18 +130,33 @@ message ContainerVnetConfig {
 ```
 
 ### Parameter usb_configs
-The repeated ```usb_config``` parameter list host USB devices which are assigned to the container.
-Their type is 
+The repeated ```usb_config``` parameter lists host USB devices which are assigned to the container.
+Their type is
 
 ```protobuf
 message ContainerUsbConfig {
 	required string id = 1;
 	required string serial = 2;
 	required bool assign = 3 [default = false];
+	required ContainerUsbType type = 4 [default = GENERIC];
 }
 ```
 The USB devices are identified by their major and minor number and their serial number. The necessary information can be found e.g by first identifying the number of the USB bus and the device number using the ```lsusb``` command.
 Using this information ```udevadm info /dev/bus/usb/<BUS_NR>/<DEV_NR>``` yields the desired information.
+
+The ContainerUsbType is
+
+```protobuf
+enum ContainerUsbType {
+	GENERIC = 1;
+	TOKEN = 2;
+	PIN_ENTRY = 3;
+}
+```
+
+The type `TOKEN` is used for USB-tokens. `PIN_ENTRY` devices are external pin reader usb devices
+that must be used for pin entry e.g. on container start and stop if specified. All other devices
+are `GENERIC`.
 
 An example for a valid ```usb_configs``` entry may look like this:
 ```
@@ -144,6 +164,7 @@ usb_configs {
 	id: "0x17ef:0x306c"
 	serial: "11AD1D009C9449100D8900B00"
 	assign: true
+	type: GENERIC
 }
 ```
 
@@ -183,6 +204,7 @@ usb_configs {
   id: "04e6:5816"
   serial: "5511747600021"
   assign: true
+  type: GENERIC
 }
 assign_dev: "c 4:1 rwm"
 allow_dev: "c 116:1 rw"

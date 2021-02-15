@@ -25,7 +25,7 @@ This tool is just for basic usage and demonstration of the control interface.
 For productive use cases an implementation of the protobuf-based control interface should be
 used, for instance in a web-based UI.
 
-The *control* tool allows administration and configuration of the trust|me platform, such as creating and starting containers, running a given command inside a container, etc.  
+The *control* tool allows administration and configuration of the trust|me platform, such as creating and starting containers, running a given command inside a container, etc.
 The available actions are listed below.
 
 Usually, container specific commands use the container-uuid as parameter to identify the
@@ -35,26 +35,33 @@ one is used. In that case, you have to specify the UUID to address all container
 
 * Start container:
 ```
-control start <container-uuid> --key=<token-key> [ --setup ]
+control start <container-uuid> [ --setup ]
 ```
 This command starts the container with the given UUID. In order to do so, the container has to be created beforehand by 'control create'.
-The optional `--setup` parameter allows you to manipulate 
+The optional `--setup` parameter allows you to manipulate
 the containers root file system tree including all encrypted overlays mounted at `/setup`.
 This could be used to bootstrap an encrypted container, see [example: Using GuestOs debos](#example-using-guestos-debos).
-`--key` specifies the Passphrase/PIN for the softtoken used for container en/decryption,
-use e.g. for default self-provisioned device `--key=trustme`.
+When entering this command, you will be interactively asked for the Passphrase/PIN of the softtoken
+used for container en/decryption. If the container configuration specifies that an external USB pin
+reader device should be used (see [Container Configuration](operate/container_config)), the
+PIN/passphrase must be entered via this device instead of the standard input keyboard.
 
 * Stop container:
 ```
 control stop <container-uuid>
 ```
-This command stops the currently running container with the given UUID
+This command stops the currently running container with the given UUID.
+When entering this command, you will be interactively asked for the Passphrase/PIN of the softtoken
+used for container en/decryption. If the container configuration specifies that an external USB pin
+reader device should be used (see [Container Configuration](operate/container_config)), the
+PIN/passphrase must be entered via this device instead of the standard input keyboard.
 
 * Create container configuration from the given template config file:
 ```
-control create <config-template-file>
+control create <config-template-file> [<container.sig> <container.cert>]
 ```
-This generates a new container configuration with a random UUID.
+This generates a new container configuration with a random UUID from a configuration file and optionally
+a signature and a certificate file.
 The configuration template file has to be given using protobuf-text syntax. It must contain at least the following:
 ```
 name: "<container name>"
@@ -69,6 +76,18 @@ control remove <container-uuid>
 ```
 Deletes the given container completely including configuration, data images and corresponding wrapped keys.
 
+* Wipe container:
+```
+control wipe <container-uuid>
+```
+Wipes the specified container.
+
+* Wipe Device:
+```
+control wipe_device
+```
+Wipes all containers on the device.
+
 * Container current state:
 ```
 control state <container-uuid>
@@ -78,7 +97,12 @@ This returns the current state of the given container. Possible states are:
 	- `STARTING`: The container was started using 'control start' and the container manager is preparing to launch the container.
 	- `BOOTING`: The container manager finished preparing the container and the control was handed over to the container's init process
 	- `RUNNING`: The container was initialized successfully and is now running.
+	- `FREEZING`: The container is in the process of freering after a 'control freeze' was issued
+	- `FROZEN`: The container is frozen after a 'control freeze' was issued
+	- `ZOMBIE`: The container is a zombie
+	- `SHUTTING_DOWN`: The container is in the process of shutting down
 	- `SETUP`: The container was initialized successfully and is now running in setup mode (target rootfs mounted at /setup)
+	- `REBOOTING`: The container is rebooting
 
 * List all available containers and their state:
 ```
@@ -93,23 +117,25 @@ Prints the container config to stdout. This could be used for editing the curren
 
 * Update a container configuration file
 ```
-control update_config <container-uuid> --file=<container.conf>
+control update_config <container-uuid> <container.conf> [<container.sig> <container.cert>]
 ```
-Sends a new config file `container.conf` to the `cmld`. It is not applied to running
-containers directly. You have to stop the container and trigger a reload.
+Sends a new config file `container.conf` and optionally a signature and certificate file to the
+`cmld`. It is not applied to running containers directly. You have to stop the container and
+trigger a reload.
+
 * Reload container configuration
 ```
 control reload
 ```
-This command reloads all container configs of all conatiners in state `STOPPED`
+This command reloads all container configs of all containers in state `STOPPED`
 into the running `cmld`.
-   
+
 * Run command inside the specified container:
 ```
 control run <container-uuid> <command> [<arg_1> ... <arg_n>]
 ```
-**Experimental**, some characters especially control characters may not work as expected.    
-The given command is executed in the context of the given container. Before executing the command, the process is made session leader and get's a new PTY attached. 
+**Experimental**, some characters especially control characters may not work as expected.
+The given command is executed in the context of the given container. Before executing the command, the process is made session leader and get's a new PTY attached.
 
 * Assign a network interface to the container with the specified UUID:
 ```
@@ -131,13 +157,27 @@ control ifaces <container-uuid>
 ```
 control freeze <container-uuid>
 ```
-Currently not supported
+Freezes the specified container, i.e. stops the processes of the container from being scheduled
+
+**Experimental**: Processes might behave unexpectedly if the container is frozen for a longer time period
 
 * Unfreeze container:
 ```
 control unfreeze <container-uuid>
 ```
-Currently not supported
+Unfreezes the specified container that was previously frozen with `control freeze`
+
+* Allow Audio
+```
+control allow_audio <container-uuid>
+```
+Grant audio access to the specified container
+
+* Deny Audio
+```
+control deny_audio <container-uuid>
+```
+Denies audio access to the specified container
 
 * List GuestOS configuration:
 ```
@@ -175,7 +215,7 @@ with `control remove`, see above.
 ```
 control pull_csr <device.csr>
 ```
-During provisioning mode (first boot of device) it is posible to
+During provisioning mode it is posible to
 sign a device private key with a customer CA. This command pulls
 the corresponding csr from the virtualization layer and
 stores the csr in the provided file name `<device.csr>`.
@@ -189,8 +229,6 @@ Remember, you have to provide your own mechanism to transfer and sign
 the certification request to your CA. Further, you have to store the
 corresponding Customer CA root certificate in the trusted CA store, see `control ca_register`.
 
-
-
 * Change the softtoken's PIN/Passphrase
 ```
 control change_pin
@@ -199,3 +237,27 @@ This command provides an interactive prompt for old and new
 Pin/Passphrase for the softtoken. Remember, the softtoken is used for
 wrapping the container encryption keys and must be provided to container
 start. (default passphrase after self-provisioning is `trustme`
+
+* Reboot device
+```
+control reboot
+```
+Reboots the device, shutting down any containers which are running
+
+* Set the device to the provisioned mode
+```
+control set_provisioned
+```
+Set the device to the provisioned mode after initial configuration. This setting is persistant.
+As soon as this command is run, the device is provisioned and only allows a subset of commands to be
+run. All other ```control``` commands will return CMD_UNSUPPORTED error code.
+
+The set of allowed commands in provisioned mode is:
+```
+control list
+control change_pin
+control create
+control start
+control stop
+control update_config
+```
