@@ -80,7 +80,7 @@ header {
 	$emblem-vertical-padding: ($nav-header-height - $emblem-size) / 2;
 	$emblem-horizontal-padding: $space;
 
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -231,7 +231,7 @@ nav > ul {
 .nav-item {
 	display: block;
 	font-family: "Open Sans", sans-serif;
-	line-height: 1;
+	line-height: 3;
 	margin: 0;
 
 	nav:not(.full-navigation) & > ul {
@@ -246,7 +246,7 @@ nav > ul {
 		color: #666;
 		text-decoration: none;
 		font-size: 1.4rem;
-		padding: $space / 2 0 $space / 2 $space * 2;
+		padding:  0 0 0 $space * 2;
 		display: block;
 	}
 
@@ -363,10 +363,11 @@ h4 svg {
 
 #search-input {
 	-webkit-appearance: none;
+    position: fixed;
 	display: block;
 	margin: 0;
 	padding: 10px 20px 10px 15px;
-	width: 100%;
+	width: $nav-width ;
 	box-sizing: border-box;
 	border: 0;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.075);
