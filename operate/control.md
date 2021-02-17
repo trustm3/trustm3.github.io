@@ -157,8 +157,7 @@ control ifaces <container-uuid>
 ```
 control freeze <container-uuid>
 ```
-Freezes the specified container, i.e. stops the processes of the container from being scheduled
-
+Freezes the specified container, i.e. stops the processes of the container from being scheduled.\
 **Experimental**: Processes might behave unexpectedly if the container is frozen for a longer time period
 
 * Unfreeze container:
