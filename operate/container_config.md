@@ -109,7 +109,7 @@ image_sizes {
 to increase the size of the mount named "enc_root" from its default size defined in the GuestOS configuration to 8GiB.
 
 ### Parameter net_ifaces
-The repeated ```net_ifaces``` parameter list host network interfaces that are assigned to the container. The interfaces are identified by their name as it is printed the ``` ip link``` command.
+The repeated ```net_ifaces``` parameter list host network interfaces that are assigned to the container. The interfaces are identified by their name as it is printed the ``` ip link``` command. Aternatively a hex representation of the MAC address like `00:11:22:33:44:55` could be used.
 
 ### Parameter allow_dev and assign_dev
 The repeated ```allow_dev``` parameter list host devices which the container is allowed to access.
