@@ -249,8 +249,7 @@ control set_provisioned
 ```
 Set the device to the provisioned mode after initial configuration. This setting is persistant.
 As soon as this command is run, the device is provisioned and only allows a subset of commands to be
-run. All other ```control``` commands will return CMD_UNSUPPORTED error code.
-
+run. All other ```control``` commands will return CMD_UNSUPPORTED error code.\
 The set of allowed commands in provisioned mode is:
 ```
 control list
