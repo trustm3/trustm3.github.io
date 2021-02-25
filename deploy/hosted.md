@@ -4,19 +4,19 @@
 # Hosted mode
 {:.no_toc}
 
-Trustm3 containers can also be run natively on your host, using the hosted mode.
+trust|me containers can also be run natively on your host, using the hosted mode.
 This section describes how to run the hosted mode.
 These instructions have been tested and work on Debian 10 stable. 
 
 ## Requirements
-Have a prebuilt container image or build one yourself as described in build ready as described in [Build]({{ "/" | absolute_url }}build/build).
+Have a prebuilt container image ready or build one yourself as described in [Build]({{ "/" | absolute_url }}build/build).
 
 ### Required packages
 Install all required packages with the following command: 
 ```
-    apt install git build-essential unzip re2c pkg-config check lxcfs \ 
-                libprotobuf-c-dev automake libtool libselinux1-dev \
-                libcap-dev protobuf-c-compiler libssl-dev udhcpd udhcpd
+apt-get install git build-essential unzip re2c pkg-config check \
+    lxcfs libprotobuf-c-dev automake libtool libselinux1-dev \
+    libcap-dev protobuf-c-compiler libssl-dev udhcpd udhcpd
 ```
 ### Protobuf-c-text
 To install protobuf-c-text, run the following commands:
