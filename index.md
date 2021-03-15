@@ -17,7 +17,7 @@ trust\|me provides a small software stack footprint and additional
 separation of privileged instances.
 The illustration below shows the system architecture of trust\|me.
 
-<img alt="trustme system architecture" src="img/architecture-tee-left.png" width="75%">
+<img alt="trustme system architecture" src="img/architecture-tee-left.png" width="100%">
 
 User interaction (e.g. admin access through ssh) may not directly end up in the
 privileged root namespace. For that purpose a less privileged _core container_
