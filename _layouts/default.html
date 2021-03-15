@@ -66,13 +66,27 @@
 				</ul>
 			</nav>
 		</header>
-
+                <script>
+                function showToC() 
+                {
+                    var x = document.getElementById("markdown-toc");
+                    if (x.style.display === "inline-block")
+                    {
+                        x.style.display = "none";
+                    }
+                    else
+                    {
+                        x.style.display = "inline-block";
+                    }
+                }
+                </script>
 		<section class="main">
 			<div class="page-header">
 				<h2>{% if page.category %}{{ page.category }}{% else %}{{ site.title }}{% endif %}</h2>
 				<h3>{{ page.title }}</h3>
 			</div>
 			<article class="content">
+            <button id="tocbtn" type="button" onclick="showToC()">Contents</button>
 				{{ content }}
 			</article>
 		</section>
