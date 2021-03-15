@@ -1,7 +1,7 @@
 # ----
 # Site
 
-title: Trust|me
+title: trust|me
 url: "https://long-pig.cloudvent.net"
 baseurl:
 google_analytics_key:
@@ -9,13 +9,13 @@ show_full_navigation: true
 
 # Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
 logo: img/trustme-logo.png
-description: Documentation for Trust|me
+description: Documentation for trust|me
 author:
   name:
   email:
   twitter: # twitter username without the @ symbol
 social:
-  name: Trustme
+  name: trustme
   links:
     - https://github.com/CloudCannon/edition-jekyll-template
 
