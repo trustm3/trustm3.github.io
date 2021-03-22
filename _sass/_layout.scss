@@ -480,19 +480,21 @@ img {
 #markdown-toc
 {
     border: 1px solid #aaa;
+    margin-top: 5px;
     margin-left: 1em;
     padding-left: 1.5em;
     padding-right: 1.5em;
-    padding-top: 1em;
+    padding-top: 1.5em;
     padding-bottom: 1em;
     /* list-style: none; */
     display: none;
     width: 240px;
     position: sticky;
-    top: 3em;
+    top: 55px;
     float: right;
     background-color: #ffffff;
     z-index: 100;
+    clear:both;
 }
 
 #tocbtn
@@ -505,5 +507,5 @@ img {
     border: 1px solid #aaa;
     width: 100px;
     float: right;
-    margin-top: -35px;
+    margin-top: 10px;
 }
