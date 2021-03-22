@@ -27,6 +27,8 @@
 		<header>
 			<h1>
 				<a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/img/trustme-logo.svg" width="40" height="40" alt="{{ site.title }} logo"></a>
+                <nav> {{ site.title }}</nav>
+                <span>{% if page.category %}{{ page.category }}{% else %}{{ site.title }}{% endif %}</span>
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
 
@@ -82,8 +84,6 @@
                 </script>
 		<section class="main">
 			<div class="page-header">
-				<h2>{% if page.category %}{{ page.category }}{% else %}{{ site.title }}{% endif %}</h2>
-				<h3>{{ page.title }}</h3>
 			</div>
 			<article class="content">
             <button id="tocbtn" type="button" onclick="showToC()">Contents</button>
