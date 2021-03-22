@@ -94,7 +94,7 @@ figure {
 	-webkit-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
 	-moz-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
 	-o-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
-	margin: 0 0 1.75em 0;
+	margin: 0 0 0.75em 0;
 	text-rendering: geometricPrecision;
 }
 
@@ -107,8 +107,8 @@ ol ol,
 ul ul,
 ul ol,
 ol ul {
-	margin: 0 0 0.4em 0;
-	padding-left: 2em;
+    padding-left: 1.5rem;
+	margin: 0 0 0.4 0;
 }
 
 dl dt {
@@ -129,7 +129,8 @@ dl dd {
 }
 
 li {
-	margin: 0.4em 0;
+	margin: 0.4px 0;
+    list-style-type: circle;
 }
 
 li li {
