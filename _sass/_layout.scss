@@ -31,7 +31,7 @@ body {
 		z-index: -1;
 	}
 
-	@media (min-width: $mobile-break) {
+	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
 		padding: 0 0 0 $nav-width;
 
 		&.nav-open {
@@ -70,7 +70,7 @@ body {
 .main {
 	margin-top: $space + $nav-header-height;
 
-	@media (min-width: $mobile-break) {
+	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
 		margin-top: 0;
 	}
 }
@@ -141,7 +141,7 @@ $nav-image: $baseurl + "/img/menu.svg";
 		}
 	}
 
-	@media (min-width: $mobile-break) {
+	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
 		background-color: transparent;
 		width: $nav-width;
 		right: auto;
@@ -196,7 +196,7 @@ $nav-image: $baseurl + "/img/menu.svg";
 		margin-left: -4px;
 	}
 
-	@media (min-width: $mobile-break) {
+	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
 		h2 {
 			font-size: 2.65rem;
 		}
@@ -215,7 +215,7 @@ nav,
 header > form {
 	display: none;
 
-	@media (min-width: $mobile-break) {
+	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
 		display: block;
 	}
 }
@@ -223,7 +223,7 @@ span
 {
 	display: block;
 
-	@media (min-width: $mobile-break) {
+	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
 		display: none;
 	}
 }
@@ -498,7 +498,7 @@ img {
 #tocbtn
 {
     top: 100px;
-    @media (min-width: $mobile-break) {
+    @media (min-width: $mobile-break) and (min-height: $vertical-break) {
         top: 20px;
     }
     position: sticky;
