@@ -488,17 +488,22 @@ img {
     /* list-style: none; */
     display: none;
     width: 240px;
-    position: right;
+    position: sticky;
+    top: 3em;
     float: right;
+    background-color: #ffffff;
+    z-index: 100;
 }
 
 #tocbtn
 {
+    top: 100px;
+    @media (min-width: $mobile-break) {
+        top: 20px;
+    }
+    position: sticky;
     border: 1px solid #aaa;
     width: 100px;
-    position: right;
     float: right;
     margin-top: -35px;
-
 }
-
