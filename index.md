@@ -4,6 +4,7 @@ title: What is trust|me
 - TOC
 {:toc}
 
+# What is trust|me
 
 trust\|me abbreviates "trusted mobile equipment" and is a
 multi-arch OS-level virtualization solution with additional
