@@ -155,6 +155,28 @@ $nav-image: $baseurl + "/img/menu.svg";
 			box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, 0.1);
 		}
 	}
+
+    .download{
+       list-style-type: none !important; 
+       padding-left: 20px;
+       border: 0.1em solid #cccccc;
+       width: 147px;
+       font-size: 16px;
+       box-sizing: border-box;
+       border-radius: 12px;
+       margin: 0.2em 0 0.2em 0.1em;
+       text-decoration: none;
+       font-weight: 300;
+       color: #000000;
+       text-align: center;
+       transition: all 0.15s;
+       
+
+        display: none;
+	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
+        display: inline;
+        }
+    }
 }
 
 .content {

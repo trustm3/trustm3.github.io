@@ -31,7 +31,7 @@
                 <span>{% if page.category %}{{ page.category }}{% else %}{{ site.title }}{% endif %}</span>
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
-
+              <button class="download"><a href="{{site.githuborg}}/{{site.repository}}/releases/tag/{{site.release_tag}}">Download <strong>Release</strong></a></button><button class="download"><a href="{{site.githuborg}}/">View On <strong>Github</strong></a></button>
 			<form action="{{ site.baseurl }}/search/" method="get">
 				<input type="text" name="q" id="search-input" placeholder="Search" autofocus>
 				<input type="submit" value="Search" style="display: none;">
