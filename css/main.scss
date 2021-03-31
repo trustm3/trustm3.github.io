@@ -21,7 +21,7 @@ $nav-width: 300px;
 $space: 20px;
 
 $mobile-break: 1000px;
-$vertical-break: 800px;
+$vertical-break: 1000px;
 $full-width-break: $nav-width + ($space * 4) + $content-max-width;
 
 @import "mixins";
