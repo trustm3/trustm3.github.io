@@ -84,12 +84,17 @@ header {
 
 	position: fixed;
 	top: 0;
-	left: 50%;
+    left: 0;
+    width: 100%;
+	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
+        left: 50%;
+        margin: 0 auto 0 -600px;
+	}
 	right: 0;
 	overflow-x: hidden;
+    overflow-y: auto;
 	z-index: 1;
 	background-color: $nav-background-color;
-    margin: 0 auto 0 -600px;
 
 	ul {
 		padding: 0;
@@ -234,6 +239,7 @@ $nav-image: $baseurl + "/img/menu.svg";
 nav,
 header > form {
 	display: none;
+    font-size: 28px;
 
 	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
 		display: block;
@@ -242,6 +248,7 @@ header > form {
 span
 {
 	display: block;
+    font-size: 28px;
 
 	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
 		display: none;
@@ -514,7 +521,11 @@ img {
     display: none;
     width: 240px;
     position: sticky;
-    top: 55px;
+    top: 135px;
+    @media (min-width: $mobile-break) and (min-height: $vertical-break) {
+        top: 55px;
+    }
+
     float: right;
     background-color: #ffffff;
     z-index: 100;
