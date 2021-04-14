@@ -29,16 +29,16 @@
 				<a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/img/trustme-logo.svg" width="40" height="40" alt="{{ site.title }} logo"></a>
                 <nav> {{ site.title }}</nav>
                 <span>{% if page.category %}{{ page.category }}{% else %}{{ site.title }}{% endif %}</span>
-                <button class="download-mobile1"><a href="{{site.githuborg}}/{{site.repository}}/releases/tag/{{site.release_tag}}">Download <strong>Release</strong></a></button><button class="download-mobile2"><a href="{{site.githuborg}}/">View On <strong>Github</strong></a></button>
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
-              <button class="download"><a href="{{site.githuborg}}/{{site.repository}}/releases/tag/{{site.release_tag}}">Download <strong>Release</strong></a></button><button class="download"><a href="{{site.githuborg}}/">View On <strong>Github</strong></a></button>
+              <button class="download1"><a href="{{site.githuborg}}/{{site.repository}}/releases/tag/{{site.release_tag}}">Download <strong>Release</strong></a></button><button class="download2"><a href="{{site.githuborg}}/">View On <strong>Github</strong></a></button>
 			<form action="{{ site.baseurl }}/search/" method="get">
 				<input type="text" name="q" id="search-input" placeholder="Search" autofocus>
 				<input type="submit" value="Search" style="display: none;">
 			</form>
 
 			<nav {% if site.show_full_navigation %}class="full-navigation"{% endif %}>
+                <button class="download-mobile1"type="nav-item"> <a href="{{site.githuborg}}/{{site.repository}}/releases/tag/{{site.release_tag}}">Download <strong>Release</strong></a></button><button class="download-mobile2"><a href="{{site.githuborg}}/">View On <strong>Github</strong></a></button>
 				<ul>
 					<li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
 						{% assign home = site.html_pages | where: 'url', '/' | first %}
