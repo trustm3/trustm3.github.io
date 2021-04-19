@@ -111,6 +111,9 @@ header {
             width: $nav-width;
         }
 	}
+    li{
+        margin: 10px 0 0 0;
+    }
 
 	h1 {
 		padding: $emblem-vertical-padding $emblem-horizontal-padding;
@@ -336,7 +339,6 @@ span
 }
 
 nav > ul {
-	padding: $space / 2 0;
 
 	& + ul {
 		border-top: 1px solid rgba(0, 0, 0, 0.075);
@@ -374,7 +376,7 @@ nav > ul {
 	&.top-level > a {
 		line-height: 1.5;
 		font-weight: 600;
-		padding-left: $space;
+        padding: 8px 0 5px $space;
 	}
 }
 
