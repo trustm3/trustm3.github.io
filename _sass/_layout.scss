@@ -70,21 +70,18 @@ body {
 		}
 	}
 
-    .box{
+    .filler{
         background: $brand-colour;
         width: 100%;
         height: 90px;
         position: fixed;
         top: 0;
+        left: 0;
     }
 }
 
 .main {
 	margin-top: $space + $nav-header-height;
-
-	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
-		margin-top: 0;
-	}
 }
 
 header {
@@ -96,19 +93,23 @@ header {
 	top: 0;
     left: 0;
     width: 100%;
+    z-index: 1;
 	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
         left: 50%;
         margin: 0 auto 0 -600px;
+        z-index: 0;
 	}
 	right: 0;
 	overflow-x: hidden;
     overflow-y: auto;
-	z-index: 1;
 	background-color: $nav-background-color;
 
 	ul {
 		padding: 0;
 		margin: 0;
+        @media (min-width: $mobile-break) and (min-height: $vertical-break) {
+            width: $nav-width;
+        }
 	}
 
 	h1 {
@@ -133,6 +134,8 @@ header {
 			width: $emblem-size;
 			margin-right: $space - 5;
 		}
+        position: sticky;
+        z-index: 10;
 	}
 
 $nav-image: $baseurl + "/img/menu.svg";
@@ -161,7 +164,7 @@ $nav-image: $baseurl + "/img/menu.svg";
 
 	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
 		background-color: transparent;
-		width: $nav-width;
+		//width: $nav-width;
 		right: auto;
 		bottom: auto;
 
@@ -263,7 +266,7 @@ $nav-image: $baseurl + "/img/menu.svg";
 }
 
 .content {
-	position: relative;
+    margin-top: 100px;
 	background-color: $content-background-color;
 	color: $content-color;
 
@@ -596,9 +599,6 @@ img {
     width: 240px;
     position: sticky;
     top: 135px;
-    @media (min-width: $mobile-break) and (min-height: $vertical-break) {
-        top: 55px;
-    }
 
     float: right;
     background-color: #ffffff;
@@ -609,9 +609,6 @@ img {
 #tocbtn
 {
     top: 100px;
-    @media (min-width: $mobile-break) and (min-height: $vertical-break) {
-        top: 20px;
-    }
     position: sticky;
     border: 1px solid #aaa;
     width: 100px;
