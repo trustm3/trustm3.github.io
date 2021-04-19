@@ -8,6 +8,8 @@
 trust\|me abbreviates "trusted mobile equipment" and is a
 multi-arch OS-level virtualization solution with additional
 focus on platform security based on hardware features.
+It aims to support certification processes according to certain industry
+standards, see [certification](/certification).
 The core component, the virtualization layer, is based on
 Linux-specific features like namespaces, cgroups and
 capabilities to provide isolation of different Guest
@@ -40,7 +42,7 @@ In a nutshell, trust\|me offers the following security features and benefits:
 * Full disk encryption coupled to TPM and secure boot
 * Restriction of superuser in containers with Linux capabilities
 * Fine-grained device access with device cgroups whitelists
-* (upcoming) Secure Element support for two-factor authentication, e.g., when starting containers
+* Secure Element support for two-factor authentication, e.g., when starting containers
 * (upcoming) Relocation of cryptographic keys and ciphers into TEEs (e.g., Kernel Crypto API)
 
 ### Benefits
