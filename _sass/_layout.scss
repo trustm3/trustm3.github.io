@@ -93,7 +93,6 @@ header {
 	top: 0;
     left: 0;
     width: 100%;
-    z-index: 1;
 	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
         left: 50%;
         margin: 0 auto 0 -600px;
@@ -137,8 +136,8 @@ header {
 			width: $emblem-size;
 			margin-right: $space - 5;
 		}
-        position: sticky;
-        z-index: 10;
+        /*position: sticky;
+        z-index: 10;*/
 	}
 
 $nav-image: $baseurl + "/img/menu.svg";
@@ -167,16 +166,12 @@ $nav-image: $baseurl + "/img/menu.svg";
 
 	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
 		background-color: transparent;
-		//width: $nav-width;
+		width: $nav-width;
 		right: auto;
 		bottom: auto;
 
 		.open-nav {
 			display: none;
-		}
-
-		h1 {
-			box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, 0.1);
 		}
 	}
 
