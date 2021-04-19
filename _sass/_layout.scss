@@ -180,6 +180,7 @@ $nav-image: $baseurl + "/img/menu.svg";
     .download1{
        list-style-type: none !important; 
        padding-left: 20px;
+       padding-right: 20px;
        border: 0.1em solid #cccccc;
        width: 147px;
        font-size: 16px;
@@ -201,6 +202,7 @@ $nav-image: $baseurl + "/img/menu.svg";
     .download2{
        list-style-type: none !important; 
        padding-left: 20px;
+       padding-right: 20px;
        border: 0.1em solid #cccccc;
        width: 147px;
        font-size: 16px;
@@ -220,24 +222,24 @@ $nav-image: $baseurl + "/img/menu.svg";
         }
     }
     .download-mobile1{
-        overflow: hidden;
-        list-style-type: none !important; 
-        border: 0.1em solid #cccccc;
-        width: 100px;
-        height: 60px;
-        font-size: 16px;
-        box-sizing: border-box;
-        border-radius: 8px 0 0 8px;
-        margin: 0.2em 0 0.2em 0.1em;
-        text-decoration: none;
-        font-weight: 300;
-        color: #000000;
-        text-align: center;
-        transition: all 0.15s;
-        line-height: normal;
+       overflow: hidden;
+       list-style-type: none !important; 
+       border: 0.1em solid #cccccc;
+       width: 100px;
+       height: 60px;
+       font-size: 16px;
+       box-sizing: border-box;
+       border-radius: 8px 0 0 8px;
+       margin: 0.2em 0 0.2em 0.1em;
+       text-decoration: none;
+       font-weight: 300;
+       color: #000000;
+       text-align: center;
+       transition: all 0.15s;
+       line-height: normal;
        
 
-        display: inline;
+       display: inline;
 	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
         display: none;
         }
