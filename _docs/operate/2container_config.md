@@ -1,6 +1,6 @@
 ---
+title: Containger configuration
 category: Operate
-order: 2
 ---
 
 - TOC
@@ -34,7 +34,7 @@ config by the provided skeleton.
 
 A full container configuration file includes the following (optional) fields:
 
-```
+```protobuf
 // user configurable, non unique
 required string name
 // name of GuestOS, e.g. idsos
@@ -44,7 +44,8 @@ required string guest_os
 optional uint64 guestos_version
 // complete image sizes from GuestOS for user partitions
 repeated ContainerImageSize image_sizes
-optional uint32 ram_limit [ default = 1024 ] // unit = MBytes
+// ram limit of container, set ram_limit to 0 for unlimited ram
+optional uint32 ram_limit [ default = 0 ];      // unit = MBytes
 required fixed32 color
 // type of container, e.g. KVM or CONTAINER
 required ContainerType type [ default = CONTAINER ]
@@ -65,10 +66,14 @@ repeated string allow_dev
 repeated string assign_dev
 // list of virtual network interface configuration
 repeated ContainerVnetConfig vnet_configs
-// list of usb devices assigned to this container 
+// list of usb devices assigned to this container
 repeated ContainerUsbConfig usb_configs
 // number of pipes from c0 to this container
 repeated string fifos
+// Specifies the container token type, e.g. NONE, SOFT or USB
+required ContainerTokenType token_type [ default = SOFT ];
+// Specifies that an external USB pin reader device is to be used for pin entry on container start and stop
+optional bool usb_pin_entry [ default = false ];
 }
 ```
 
@@ -78,7 +83,7 @@ The full-blown protocol specification can be found [here](https://github.com/tru
 ### Parameter image_sizes
 The ```image_sizes``` parameter defines the sizes of user partitions of the GuestOS. Its type ```ContainerImageSize``` is defined as follows:
 
-```
+```protobuf
 message ContainerImageSize {
 	required string image_name = 1; // virtual name of the image file in guestos
 	required uint64 image_size = 2; // size (Mbytes) of the image file
@@ -106,7 +111,7 @@ image_sizes {
 to increase the size of the mount named "enc_root" from its default size defined in the GuestOS configuration to 8GiB.
 
 ### Parameter net_ifaces
-The repeated ```net_ifaces``` parameter list host network interfaces that are assigned to the container. The interfaces are identified by their name as it is printed the ``` ip link``` command.
+The repeated ```net_ifaces``` parameter list host network interfaces that are assigned to the container. The interfaces are identified by their name as it is printed the ``` ip link``` command. Aternatively a hex representation of the MAC address like `00:11:22:33:44:55` could be used.
 
 ### Parameter allow_dev and assign_dev
 The repeated ```allow_dev``` parameter list host devices which the container is allowed to access.
@@ -117,7 +122,7 @@ Devices are identified using the **cgroups** syntax.
 The repeated ```vnet_configs```parameter list virtual network interface configuration.
 They are of type ```ContainerVnetConfig``` which is defined as
 
-```
+```protobuf
 message ContainerVnetConfig {
 	required string if_name = 1; // name of virtual veth endpoint in container
 	required bool configure = 2; // should cmld configure the interface or leav it unconfigured
@@ -127,18 +132,33 @@ message ContainerVnetConfig {
 ```
 
 ### Parameter usb_configs
-The repeated ```usb_config``` parameter list host USB devices which are assigned to the container.
-Their type is 
+The repeated ```usb_config``` parameter lists host USB devices which are assigned to the container.
+Their type is
 
-```
+```protobuf
 message ContainerUsbConfig {
 	required string id = 1;
 	required string serial = 2;
 	required bool assign = 3 [default = false];
+	required ContainerUsbType type = 4 [default = GENERIC];
 }
 ```
 The USB devices are identified by their major and minor number and their serial number. The necessary information can be found e.g by first identifying the number of the USB bus and the device number using the ```lsusb``` command.
 Using this information ```udevadm info /dev/bus/usb/<BUS_NR>/<DEV_NR>``` yields the desired information.
+
+The ContainerUsbType is
+
+```protobuf
+enum ContainerUsbType {
+	GENERIC = 1;
+	TOKEN = 2;
+	PIN_ENTRY = 3;
+}
+```
+
+The type `TOKEN` is used for USB-tokens. `PIN_ENTRY` devices are external pin reader usb devices
+that must be used for pin entry e.g. on container start and stop if specified. All other devices
+are `GENERIC`.
 
 An example for a valid ```usb_configs``` entry may look like this:
 ```
@@ -146,6 +166,7 @@ usb_configs {
 	id: "0x17ef:0x306c"
 	serial: "11AD1D009C9449100D8900B00"
 	assign: true
+	type: GENERIC
 }
 ```
 
@@ -185,6 +206,7 @@ usb_configs {
   id: "04e6:5816"
   serial: "5511747600021"
   assign: true
+  type: GENERIC
 }
 assign_dev: "c 4:1 rwm"
 allow_dev: "c 116:1 rw"

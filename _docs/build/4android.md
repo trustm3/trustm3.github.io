@@ -1,7 +1,6 @@
 ---
-title: Android
+title: Smartphones (depct'd)
 category: Build
-order: 2
 ---
 - TOC
 {:toc}

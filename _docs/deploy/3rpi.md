@@ -1,6 +1,6 @@
 ---
+title: "ARM: rpi"
 category: Deploy
-order: 2
 ---
 - TOC
 {:toc}

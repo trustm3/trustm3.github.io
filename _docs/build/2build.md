@@ -1,7 +1,6 @@
 ---
 title: Base System
 category: Build
-order: 2
 ---
 - TOC
 {:toc}
@@ -112,7 +111,7 @@ If required, a bootable installer image can be created. This image can be used t
 > Currently, the installer medium is only available for x86 platforms
 
 ```
-bitbake trustx-installer
+bitbake multiconfig:installer:trustx-installer
 ```
 
 

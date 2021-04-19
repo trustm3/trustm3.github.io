@@ -1,5 +1,5 @@
 ---
-title: What is trust|me
+title: Overview
 ---
 - TOC
 {:toc}
@@ -9,6 +9,8 @@ title: What is trust|me
 trust\|me abbreviates "trusted mobile equipment" and is a
 multi-arch OS-level virtualization solution with additional
 focus on platform security based on hardware features.
+It aims to support certification processes according to certain industry
+standards, see [certification](/certification).
 The core component, the virtualization layer, is based on
 Linux-specific features like namespaces, cgroups and
 capabilities to provide isolation of different Guest
@@ -18,7 +20,7 @@ trust\|me provides a small software stack footprint and additional
 separation of privileged instances.
 The illustration below shows the system architecture of trust\|me.
 
-<img alt="trustme system architecture" src="img/architecture-tee-left.png" width="100%">
+<img alt="trustme system architecture" src="img/architecture-tee-left.png" width="75%">
 
 User interaction (e.g. admin access through ssh) may not directly end up in the
 privileged root namespace. For that purpose a less privileged _core container_
@@ -41,7 +43,7 @@ In a nutshell, trust\|me offers the following security features and benefits:
 * Full disk encryption coupled to TPM and secure boot
 * Restriction of superuser in containers with Linux capabilities
 * Fine-grained device access with device cgroups whitelists
-* (upcoming) Secure Element support for two-factor authentication, e.g., when starting containers
+* Secure Element support for two-factor authentication, e.g., when starting containers
 * (upcoming) Relocation of cryptographic keys and ciphers into TEEs (e.g., Kernel Crypto API)
 
 ### Benefits
@@ -66,9 +68,9 @@ For more information on trust\|me and OS-Level virtualization, [read our backgro
 
 # Use cases
 
-| __Application separation.__ Similar to Docker trust\|me can be used to separate applications in server environments, yet providing a full system inside a container closer to type 1 hypervisors such as Xen. | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/tux_logo.png" width="50%"> |
-| __IoT edge devices.__ Its stripped-down version -- just a kernel and a small ramdisk as virtualization layer -- targets embedded systems which can be used in the IoT context for edge devices. trust\|me also provides the reference implementation for the so-called Trusted Connector in the Industrial Data Space. The [Industrial Data Space](http://www.industrialdataspace.org/en/) provides concepts for a generic, shared data cloud for the (industrial) Internet of Things | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/logo.png" width="50%">| 
-| __Smartphones.__ Due to its history, formerly designed for Smartphones, it could still run on those devices to provide a container execution environment for background containers. Nevertheless, it is also feasible to separate user containers with different security requirements.| <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/android_logo.png" width="50%">|
+| __Application separation.__ Similar to Docker trust\|me can be used to separate applications in server environments, yet providing a full system inside a container closer to type 1 hypervisors such as Xen. | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/tux_logo.png" width="15%"> |
+| __IoT edge devices.__ Its stripped-down version -- just a kernel and a small ramdisk as virtualization layer -- targets embedded systems which can be used in the IoT context for edge devices. trust\|me also provides the reference implementation for the so-called Trusted Connector in the Industrial Data Space. The [Industrial Data Space](http://www.industrialdataspace.org/en/) provides concepts for a generic, shared data cloud for the (industrial) Internet of Things | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/logo.png" width="15%">| 
+| __Smartphones.__ Due to its history, formerly designed for Smartphones, it could still run on those devices to provide a container execution environment for background containers. Nevertheless, it is also feasible to separate user containers with different security requirements.| <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/android_logo.png" width="15%">|
 
 # Supported platforms
 The trust\|me software stack runs on following hardware platforms:

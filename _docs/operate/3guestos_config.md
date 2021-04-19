@@ -1,6 +1,6 @@
 ---
+title: GuestOS configuration
 category: Operate
-order: 2
 ---
 
 - TOC
@@ -35,7 +35,7 @@ signature and matches the included image hashes, before accepting the new/update
 ## GuestOS configuration specification
 The full GuestOS configuration contains following fields:
 
-```
+```protobuf
 // The following three fields together should UNIQUELY identify the actual guestos image files and config:
 required string name  // unique name of the operating system
 required string hardware // target hardware; must match hardware_get_name(), e.g. "i9505", etc.
@@ -67,7 +67,7 @@ The original Protobuf formatted file can be found [here](https://github.com/trus
 ### Parameter mounts
 The repeated ```mounts``` parameter list all mounts inside the container and is of type ```GuestOSMount``` which is specified as follows:
 
-```
+```protobuf
 message GuestOSMount {
 	// Path for the image files is derived from guestos_path/guestos_name.
 	required string image_file = 1; // name of the image file, e.g. system

@@ -1,7 +1,6 @@
 ---
 title: Guest OS
 category: Build
-order: 2
 ---
 - TOC
 {:toc}

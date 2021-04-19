@@ -1,6 +1,6 @@
 ---
+title: "ARM: Xilinx"
 category: Deploy
-order: 2
 ---
 - TOC
 {:toc}

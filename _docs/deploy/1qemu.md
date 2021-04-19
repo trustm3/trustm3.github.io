@@ -1,6 +1,6 @@
 ---
+title: QEMU/KVM
 category: Deploy
-order: 2
 ---
 
 - TOC
