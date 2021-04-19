@@ -11,6 +11,11 @@ pages:
    pages:
 
  - category:
+   name: Certification
+   url: certification
+   pages:
+
+ - category:
    name: Build Environment
    url: setup_host
    pages:
