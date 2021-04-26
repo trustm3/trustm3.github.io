@@ -7,7 +7,7 @@ body {
 	overflow-x: hidden;
 	background-color: $body-background-color;
 
-    a:link {
+    a:link, a:hover, a:visited, a:active {
         text-decoration: none;
         color: #3370ab;
     }
@@ -100,6 +100,9 @@ header {
 	$emblem-horizontal-padding: $space;
 
     a:link{
+        color: #4A4A4A;
+    }
+    a:visited{
         color: #4A4A4A;
     }
 	position: fixed;
@@ -379,6 +382,8 @@ nav > ul {
 	> a:active,
 	> a:hover {
 		color: #111;
+        background-color: $brand-colour;
+        font-weight: 600;
 	}
 
 	&.top-level > a {
