@@ -20,7 +20,7 @@ Choose the option that best fits your requirements.
 sudo apt-get install repo
 ```
 
-2. Create and initialize workspace on host (for further information and available manifests see [build/initialize workspace](build/build#initialize-workspace))
+2. Create and initialize workspace on host (for further information and available manifests see [build/initialize workspace](/build/build#initialize-workspace))
 ```
 mkdir ~/ws-yocto
 cd ~/ws-yocto
