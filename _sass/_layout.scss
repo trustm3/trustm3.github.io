@@ -9,6 +9,7 @@ body {
 
     a:link {
         text-decoration: none;
+        color: #3370ab;
     }
 	&.nav-open {
 		overflow: hidden;
@@ -78,6 +79,15 @@ body {
         top: 0;
         left: 0;
     }
+    .impressum{
+        background: $brand-colour;
+        width: 200%;
+        height: 90px;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+    }
 }
 
 .main {
@@ -89,6 +99,9 @@ header {
 	$emblem-vertical-padding: ($nav-header-height - $emblem-size) / 2;
 	$emblem-horizontal-padding: $space;
 
+    a:link{
+        color: #4A4A4A;
+    }
 	position: fixed;
 	top: 0;
     left: 0;
