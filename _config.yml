@@ -2,14 +2,17 @@
 # Site
 
 title: trust|me
-url: "https://long-pig.cloudvent.net"
+url: "https://github.com/trustm3"
 baseurl:
 google_analytics_key:
 show_full_navigation: true
 
 # Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
 logo: img/trustme-logo.png
-description: Documentation for trust|me
+description: This is the trust|me project documentation
+githuborg: "https://github.com/trustm3"
+repository: trustme_main
+release_tag: v0.1.1
 author:
   name:
   email:
