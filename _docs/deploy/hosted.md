@@ -1,6 +1,7 @@
 ---
 title: Hosted Mode
 category: Deploy
+order: 5
 ---
 # Hosted mode
 {:.no_toc}

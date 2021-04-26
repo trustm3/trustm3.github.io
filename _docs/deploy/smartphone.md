@@ -1,6 +1,7 @@
 ---
 title: Smartphones (depct'd)
 category: Deploy
+order: 6
 ---
 
 - TOC

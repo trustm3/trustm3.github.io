@@ -1,5 +1,7 @@
 ---
 title: Build Environment
+category: General
+order: 3
 ---
 - TOC
 {:toc}

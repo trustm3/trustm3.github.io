@@ -1,6 +1,7 @@
 ---
 title: GuestOS configuration
 category: Operate
+order: 3
 ---
 
 - TOC

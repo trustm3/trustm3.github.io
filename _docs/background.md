@@ -1,5 +1,7 @@
 ---
 title: Background
+category: General
+order: 1
 ---
 
 # Background

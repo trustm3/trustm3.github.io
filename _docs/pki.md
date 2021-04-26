@@ -1,5 +1,7 @@
 ---
 title: PKI
+category: General
+order: 4
 ---
 
 - TOC

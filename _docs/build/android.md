@@ -1,6 +1,7 @@
 ---
 title: Smartphones (depct'd)
 category: Build
+order: 4
 ---
 - TOC
 {:toc}

@@ -1,6 +1,7 @@
 ---
 title: Quick Build
 category: Build
+order: 1
 ---
 * TOC
 {:toc}
