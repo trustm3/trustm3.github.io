@@ -2,6 +2,11 @@ input::-ms-clear,
 input::-ms-reveal {
 	display: none !important;
 }
+/*const mediaQuery = window.matchmedia('(min-width: 1000px)')
+if(mediaQuery.matches)
+{
+    site.show_full_navigation=true
+}*/
 body {
 	height: auto;
 	overflow-x: hidden;
@@ -78,6 +83,7 @@ body {
         position: fixed;
         top: 0;
         left: 0;
+        z-index: 0;
     }
     .impressum{
         background: $brand-colour;
@@ -196,56 +202,15 @@ $nav-image: $baseurl + "/img/menu.svg";
 		}
 	}
 
-    .download1{
-       list-style-type: none !important; 
-       padding-left: 20px;
-       padding-right: 20px;
-       border: 0.1em solid #cccccc;
-       width: 147px;
-       font-size: 16px;
-       box-sizing: border-box;
-       border-radius: 8px 0 0 8px;
-       margin: 0.2em 0 0.2em 0.1em;
-       font-weight: 300;
-       color: #000000;
-       text-align: center;
-       transition: all 0.15s;
-       line-height: 1.2;
-       
-
-        display: none;
-	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
-        display: inline;
-        }
-    }
-    .download2{
-       list-style-type: none !important; 
-       padding-left: 20px;
-       padding-right: 20px;
-       border: 0.1em solid #cccccc;
-       width: 147px;
-       font-size: 16px;
-       box-sizing: border-box;
-       border-radius: 0 8px 8px 0;
-       margin: 0.2em 0 0.2em 0;
-       font-weight: 300;
-       color: #000000;
-       text-align: center;
-       transition: all 0.15s;
-       line-height: 1.2;
-       
-
-        display: none;
-	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
-        display: inline;
-        }
-    }
     .download-mobile1{
+       background: $brand-colour;
        overflow: hidden;
+       position: absolute;
+       right: 150px;
        list-style-type: none !important; 
-       border: 0.1em solid #cccccc;
-       width: 100px;
-       height: 60px;
+       border: none;
+       width: 50px;
+       height: 50px;
        font-size: 16px;
        box-sizing: border-box;
        border-radius: 8px 0 0 8px;
@@ -256,6 +221,10 @@ $nav-image: $baseurl + "/img/menu.svg";
        text-align: center;
        transition: all 0.15s;
        line-height: normal;
+       img{
+       height: 35px;
+       width: 35px;
+       }
        
 
        display: inline;
@@ -264,20 +233,27 @@ $nav-image: $baseurl + "/img/menu.svg";
         }
     }
     .download-mobile2{
-        list-style-type: none !important; 
-        border: 0.1em solid #cccccc;
-        width: 100px;
-        height: 60px;
-        font-size: 16px;
-        box-sizing: border-box;
-        border-radius: 0 8px 8px 0;
-        margin: 0.2em 0 0.2em 0;
-        text-decoration: none;
-        font-weight: 300;
-        color: #000000;
-        text-align: center;
-        transition: all 0.15s;
-        line-height: normal;
+       background: $brand-colour;
+       position: absolute;
+       right: 100px;
+       list-style-type: none !important; 
+       border: none;
+       width: 50px;
+       height: 50px;
+       font-size: 16px;
+       box-sizing: border-box;
+       border-radius: 0 8px 8px 0;
+       margin: 0.2em 0 0.2em 0;
+       text-decoration: none;
+       font-weight: 300;
+       color: #000000;
+       text-align: center;
+       transition: all 0.15s;
+       line-height: normal;
+       img{
+       height: 35px;
+       width: 35px;
+       }
 
         display: inline;
 	@media (min-width: $mobile-break) and (min-height: $vertical-break) {
@@ -362,7 +338,6 @@ nav > ul {
 }
 
 .nav-item {
-	display: block;
 	font-family: "Open Sans", sans-serif;
 	line-height: 2.5;
     margin: 0;
@@ -374,6 +349,7 @@ nav > ul {
 	nav:not(.full-navigation) &.current > ul {
 		display: block;
 	}
+    
 
 	> a {
 		color: #666;
@@ -389,8 +365,12 @@ nav > ul {
 		color: #111;
         background-color: $brand-colour;
         font-weight: 600;
+        display:block;
 	}
 
+    &.top-level{
+        display: block;
+    }
 	&.top-level > a {
 		line-height: 1.5;
 		font-weight: 600;
@@ -398,6 +378,9 @@ nav > ul {
 	}
 }
 
+#nav-item ul li.active span{
+    display: none;
+}
 .settings-panel-example {
 	@extend p;
 	@include display-flex();
@@ -520,19 +503,6 @@ h4 svg {
 
 }
 
-.changelog {
-	&,
-	> div {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.date {
-		color: #888;
-		font-style: italic;
-	}
-}
 
 .badge {
 	font-family: "Open Sans", sans-serif;
@@ -642,3 +612,64 @@ img {
     margin-top: 10px;
 }
 
+.download1{
+   background: $brand-colour;
+   list-style-type: none !important; 
+   padding-left: 20px;
+   padding-right: 20px;
+   border: none;
+   width: 147px;
+   font-size: 20px;
+   box-sizing: border-box;
+   border-radius: 8px 0 0 8px;
+   margin: 0.2em 0 0.2em 0.1em;
+   font-weight: 500;
+   color: #000000;
+   text-align: center;
+   transition: all 0.15s;
+   line-height: 1.2;
+   position: absolute;
+   z-index: 10;
+   right: 157px;
+   top: 20px;
+
+   a:link, a:hover, a:visited, a:active {
+        text-decoration: none;
+        color: #000;
+    }
+
+    display: none;
+@media (min-width: $mobile-break) and (min-height: $vertical-break) {
+    display: inline;
+    }
+}
+.download2{
+   background: $brand-colour;
+   list-style-type: none !important; 
+   padding-left: 20px;
+   padding-right: 20px;
+   border: none;
+   width: 147px;
+   font-size: 20px;
+   box-sizing: border-box;
+   border-radius: 0 8px 8px 0;
+   margin: 0.2em 0 0.2em 0;
+   font-weight: 500;
+   color: #000000;
+   text-align: center;
+   transition: all 0.15s;
+   line-height: 1.2;
+   position: absolute;
+   z-index: 10;
+   right: 10px;
+   top: 20px;
+   a:link, a:hover, a:visited, a:active {
+        text-decoration: none;
+        color: #000;
+    }
+
+    display: none;
+@media (min-width: $mobile-break) and (min-height: $vertical-break) {
+    display: inline;
+    }
+}
