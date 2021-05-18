@@ -35,7 +35,7 @@ config by the provided skeleton.
 
 A full container configuration file includes the following (optional) fields:
 
-```protobuf
+```
 // user configurable, non unique
 required string name
 // name of GuestOS, e.g. idsos
@@ -84,7 +84,7 @@ The full-blown protocol specification can be found [here](https://github.com/tru
 ### Parameter image_sizes
 The ```image_sizes``` parameter defines the sizes of user partitions of the GuestOS. Its type ```ContainerImageSize``` is defined as follows:
 
-```protobuf
+```
 message ContainerImageSize {
 	required string image_name = 1; // virtual name of the image file in guestos
 	required uint64 image_size = 2; // size (Mbytes) of the image file
@@ -123,7 +123,7 @@ Devices are identified using the **cgroups** syntax.
 The repeated ```vnet_configs```parameter list virtual network interface configuration.
 They are of type ```ContainerVnetConfig``` which is defined as
 
-```protobuf
+```
 message ContainerVnetConfig {
 	required string if_name = 1; // name of virtual veth endpoint in container
 	required bool configure = 2; // should cmld configure the interface or leav it unconfigured
@@ -136,7 +136,7 @@ message ContainerVnetConfig {
 The repeated ```usb_config``` parameter lists host USB devices which are assigned to the container.
 Their type is
 
-```protobuf
+```
 message ContainerUsbConfig {
 	required string id = 1;
 	required string serial = 2;
@@ -149,7 +149,7 @@ Using this information ```udevadm info /dev/bus/usb/<BUS_NR>/<DEV_NR>``` yields 
 
 The ContainerUsbType is
 
-```protobuf
+```
 enum ContainerUsbType {
 	GENERIC = 1;
 	TOKEN = 2;
