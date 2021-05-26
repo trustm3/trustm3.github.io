@@ -3,10 +3,12 @@
 
 title: trust|me
 url: "https://github.com/trustm3"
-baseurl:
+baseurl: ""
 google_analytics_key:
 show_full_navigation: true
 
+kramdown:
+  parse_block_html: true
 # Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
 logo: img/trustme-logo.png
 description: This is the trust|me project documentation

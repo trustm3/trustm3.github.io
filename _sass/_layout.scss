@@ -627,7 +627,7 @@ img {
    text-align: center;
    transition: all 0.15s;
    line-height: 1.2;
-   position: absolute;
+   position: fixed;
    z-index: 10;
    right: 210px;
    top: 0;
@@ -639,7 +639,7 @@ img {
 
     display: none;
 @media (min-width: $mobile-break) {
-    display: inline;
+    display: inline-block;
     }
 }
 .download2{
@@ -655,7 +655,7 @@ img {
    color: #000000;
    transition: all 0.15s;
    line-height: 1.2;
-   position: absolute;
+   position: fixed;
    z-index: 10;
    right: 10px;
    top: 0;
@@ -666,7 +666,7 @@ img {
 
     display: none;
 @media (min-width: $mobile-break) {
-    display: inline;
+    display: inline-block;
     }
 }
 .download1 img{
