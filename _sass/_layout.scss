@@ -261,6 +261,7 @@ $nav-image: $baseurl + "/img/menu.svg";
     margin-top: 100px;
 	background-color: $content-background-color;
 	color: $content-color;
+    z-index : 0;
 
 }
 
@@ -590,12 +591,11 @@ img {
     /* list-style: none; */
     display: none;
     width: 240px;
-    position: sticky;
+    position: relative;
     top: 135px;
 
     float: right;
     background-color: #ffffff;
-    z-index: 100;
     clear:both;
 }
 
@@ -615,14 +615,12 @@ img {
 
 .download1{
    background: $brand-colour;
+   text-align: center;
    list-style-type: none !important; 
-   padding-left: 20px;
-   padding-right: 20px;
    border: none;
-   width: 147px;
+   width: 200px;
    font-size: 20px;
    box-sizing: border-box;
-   border-radius: 8px 0 0 8px;
    margin: 0.2em 0 0.2em 0.1em;
    font-weight: 500;
    color: #000000;
@@ -631,8 +629,8 @@ img {
    line-height: 1.2;
    position: absolute;
    z-index: 10;
-   right: 157px;
-   top: 20px;
+   right: 210px;
+   top: 0;
 
    a:link, a:hover, a:visited, a:active {
         text-decoration: none;
@@ -646,24 +644,21 @@ img {
 }
 .download2{
    background: $brand-colour;
+   text-align: center;
    list-style-type: none !important; 
-   padding-left: 20px;
-   padding-right: 20px;
    border: none;
-   width: 147px;
+   width: 200px;
    font-size: 20px;
    box-sizing: border-box;
-   border-radius: 0 8px 8px 0;
    margin: 0.2em 0 0.2em 0;
    font-weight: 500;
    color: #000000;
-   text-align: center;
    transition: all 0.15s;
    line-height: 1.2;
    position: absolute;
    z-index: 10;
    right: 10px;
-   top: 20px;
+   top: 0;
    a:link, a:hover, a:visited, a:active {
         text-decoration: none;
         color: #000;
@@ -673,4 +668,8 @@ img {
 @media (min-width: $mobile-break) {
     display: inline;
     }
+}
+.download1 img{
+    display:block;
+    margin: auto;
 }
