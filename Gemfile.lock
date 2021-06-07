@@ -35,6 +35,9 @@ GEM
       jekyll (~> 3.3)
     jekyll-sitemap (1.2.0)
       jekyll (~> 3.3)
+    jekyll-toc (0.16.1)
+      jekyll (>= 3.8)
+      nokogiri (~> 1.10)
     jekyll-watch (2.0.0)
       listen (~> 3.0)
     kramdown (1.17.0)
@@ -44,9 +47,14 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
     mercenary (0.3.6)
+    mini_portile2 (2.5.3)
+    nokogiri (1.11.7)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     pathutil (0.16.1)
       forwardable-extended (~> 2.6)
     public_suffix (3.0.3)
+    racc (1.5.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -67,6 +75,7 @@ DEPENDENCIES
   jekyll-feed (= 0.11.0)
   jekyll-seo-tag (= 2.5.0)
   jekyll-sitemap (= 1.2.0)
+  jekyll-toc
 
 BUNDLED WITH
    2.1.2
