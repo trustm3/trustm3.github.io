@@ -6,6 +6,8 @@ order: 1
 
 
 # Run trust\|me image in QEMU/KVM (x86-64)
+- TOC
+{:toc}
 Before following these steps you need to create the partitioned trust\|me image as described in [Build]({{ "/" | absolute_url }}build/build)  
 or download a released image from Github.
 
