@@ -4,10 +4,10 @@ category: Operate
 order: 4
 ---
 
-- TOC
-{:toc}
 
 # Example: Using GuestOS debos
+- TOC
+{:toc}
 The GuestOS debos provides a basic integrity protected debian installer
 base image. This GuestOS type provides the ability to setup a
 confidential debian system inside a container.
@@ -81,7 +81,7 @@ Now stop the container and start it normally:
 control stop debian1
 control start debian1 --key=trustme
 ```
-
+ 
 # Example: Using docker-convertos
 > **Experimental**, the converter may not work for every image on dockerhub!
 

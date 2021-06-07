@@ -4,10 +4,10 @@ category: Operate
 order: 2
 ---
 
-- TOC
-{:toc}
 
 # Container configuration
+- TOC
+{:toc}
 
 All containers currently available are defined in the configuration files in the form `<container-uuid>.conf` in the '/data/cml/containers/' folder. The `<container-uuid>` is a Universal Unique Identifier provided in five character groups separated by hyphens, e.g., 11111111-1111-1111-1111-111111111111.
 

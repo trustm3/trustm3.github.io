@@ -4,10 +4,10 @@ category: Operate
 order: 3
 ---
 
-- TOC
-{:toc}
 
 # GuestOS configuration
+- TOC
+{:toc}
 
 An operating system configuration is defined in the `<os-name>-<os-version>.conf` in the `/data/cml/operatingsystems/` folder. The configuration includes OS name and version, supported hardware type, description of mounted images, init process path and parameters, build date, and others. Descriptions of mounted images include their hashes, size, and file system type.
 

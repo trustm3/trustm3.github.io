@@ -3,10 +3,10 @@ title: Base System
 category: Build
 order: 2
 ---
-- TOC
-{:toc}
 
 # Build trust|me
+- TOC
+{:toc}
 
 The steps to build trust\|me are very similar for each flavour of the platform such as core, IDS, etc. The difference between these flavours are the containers installed on trust\|me. In order to build the trust\|me flavour you're interested in, select the appropriate containers in [the corresponding build step](#include-containers-to-trustme-image).
 If you just want to try out trust\|me the core flavour is the best option for you.

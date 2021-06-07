@@ -4,11 +4,10 @@ category: Deploy
 order: 6
 ---
 
-- TOC
-{:toc}
 
 # Deploy on Android Smartphones (deprecated)
-{:.no_toc}
+- TOC
+{:toc}
 > **Note**: We do not support the Android based smartphone build anymore.
 
 The deployment requires setting up the adbkey produced during build

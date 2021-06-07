@@ -3,11 +3,10 @@ title: "ARM: rpi"
 category: Deploy
 order: 3
 ---
-- TOC
-{:toc}
 
 # Deploy trust\|me on Raspberry Pi platforms
-{:.no_toc}
+- TOC
+{:toc}
 
 This section describes how to deploy trust\|me on Raspberry Pi platforms.
 

@@ -4,7 +4,8 @@ category: Deploy
 order: 5
 ---
 # Hosted mode
-{:.no_toc}
+- TOC
+{:toc}
 
 trust|me containers can also be run natively on your host, using the hosted mode.
 This section describes how to run the hosted mode.

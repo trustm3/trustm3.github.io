@@ -3,10 +3,10 @@ title: Certification
 category: General
 order: 2
 ---
-- TOC
-{:toc}
 
 # Certification
+- TOC
+{:toc}
 
 trust|me can be used to support different certification processes.
 Some of the provided security features should allow to be used as TSF for Common Criteria certification

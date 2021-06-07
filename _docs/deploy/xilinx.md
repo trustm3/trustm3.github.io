@@ -4,11 +4,10 @@ category: Deploy
 order: 4
 
 ---
-- TOC
-{:toc}
 
 # Deploy trust\|me on Xilinx Zynq platforms
-{:.no_toc}
+- TOC
+{:toc}
 
 This section describes how to deploy trust\|me on a Xilinx Zynq platform.
 

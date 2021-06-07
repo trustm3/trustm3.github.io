@@ -3,11 +3,10 @@ title: Build Environment
 category: General
 order: 3
 ---
-- TOC
-{:toc}
 
 # Setup build environment
-{:.no_toc}
+- TOC
+{:toc}
 
 This page describes how to setup the build environment for the trust\|me system.
 The instructions were tested on Debian Stretch (x86-64).

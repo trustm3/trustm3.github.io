@@ -4,12 +4,11 @@ category: Operate
 order: 1
 ---
 
-- TOC
-{:toc}
 
 # Containers and GuestOSes
-{:.no_toc}
 
+- TOC
+{:toc}
 ## Containers and guest operating systems
 
 Each container has a corresponding configuration file defining its key features.

@@ -3,10 +3,10 @@ title: Quick Build
 category: Build
 order: 1
 ---
-* TOC
-{:toc}
 
 # Quick build instructions
+* TOC
+{:toc}
 
 This section sums up the necessary steps to build trust\|me on different architectures.
 For a detailed explanation of each build step please refer to the [build section](/build/build)

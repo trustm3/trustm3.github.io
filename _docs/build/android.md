@@ -3,11 +3,10 @@ title: Smartphones (depct'd)
 category: Build
 order: 4
 ---
-- TOC
-{:toc}
 
 # Android Build for Smartphones (deprecated)
-{:.no_toc}
+- TOC
+{:toc}
 
 > **Note**: We do not support the Android based smartphone build anymore.
 However, for reference, we provide the build instructions -- which should still work -- here.

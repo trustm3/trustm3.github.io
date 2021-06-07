@@ -3,10 +3,10 @@ title: Guest OS
 category: Build
 order: 3
 ---
-- TOC
-{:toc}
 
 # Create new Guest Operating Systems
+- TOC
+{:toc}
 
 This page describes the process of creating a new guest OS to be used in trust\|me containers.
 It is possible to build a new guest OS using Yocto or by hand using a rootfs image. Both possibilities are described here.
