@@ -79,7 +79,7 @@ body {
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 0;
+        z-index: 1;
         display: none;
         @media (min-width: $mobile-break) {
             display: inline;
@@ -602,7 +602,6 @@ img {
     clear:both;
     display: inline;
     @media (min-width: $toc-break) {
-
         display: none;
         }
 }
@@ -655,6 +654,9 @@ img {
 @media (min-width: $mobile-break) {
     display: inline-block;
     }
+@media (min-width: $toc-break) {
+    margin: 0 0 0 510px;
+    }
 }
 .download2{
    background: $brand-colour;
@@ -683,17 +685,20 @@ img {
 @media (min-width: $mobile-break) {
     display: inline-block;
     }
+@media (min-width: $toc-break) {
+    margin: 0 0 0 710px;
+    }
 }
 .download1 img{
     display:block;
     margin: auto;
 }
-#toc:before{
+.toc:before{
     content: "Contents";
     font-weight: bold;
     color: #727272;
 }
-#toc{
+.toc{
     border: 1px solid #aaa;
     left: 50%;
     margin: 0 0 0 600px;
