@@ -38,8 +38,10 @@ body {
 		z-index: -1;
 	}
 
+    @media (max-width: $toc-break) and (min-width: $mobile-break){
+        padding: 0 0 0 $nav-width;
+    }
 	@media (min-width: $mobile-break) {
-		padding: 0 0 0 $nav-width;
 
 		&.nav-open {
 			overflow: auto;
@@ -71,37 +73,16 @@ body {
 		}
 	}
 
-    .filler{
-        background: $brand-colour;
-        width: 100%;
-        height: 100px;
-
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1;
-        display: none;
-        @media (min-width: $mobile-break) {
-            display: inline;
-        }
-    }
-    .impressum{
-        background: $brand-colour;
-        width: 200%;
-        height: 90px;
-        position: relative;
-        bottom: 0;
-        left: 0;
-        z-index: 10;
-    }
     h1, h2, h3{
-        padding-top: 30px;
+        padding-top: 20px;
+        padding-bottom: 10px;
         scroll-margin-top: 70px;
     }
 }
 
 .main {
 	margin-top: $space + $nav-header-height;
+    margin-left: 0;
 }
 
 header {
@@ -119,11 +100,16 @@ header {
 	top: 0;
     left: 0;
     width: 100%;
+    z-index: 10;
 	@media (min-width: $mobile-break) {
         left: 50%;
-        margin: 0 auto 0 -600px;
-        z-index: 10;
+        margin: 0 auto 0 -630px;
 	}
+    @media (max-width: $toc-break) and (min-width: $mobile-break){
+        left: 50%;
+        margin: 0 auto 0 -500px;
+    }
+
 	right: 0;
 	overflow-x: hidden;
     overflow-y: auto;
@@ -262,7 +248,6 @@ $nav-image: $baseurl + "/img/menu.svg";
 }
 
 .content {
-    margin-top: 100px;
 	background-color: $content-background-color;
 	color: $content-color;
     z-index : 0;
@@ -273,7 +258,7 @@ $nav-image: $baseurl + "/img/menu.svg";
 .page-header {
 	max-width: $content-max-width;
 	padding: 0 ($space + 5) $space;
-	margin: 150px auto 0 auto;
+	margin: 0 auto 0 auto;
 }
 
 .page-header {
@@ -297,11 +282,11 @@ $nav-image: $baseurl + "/img/menu.svg";
 
 	@media (min-width: $mobile-break) {
 		h2 {
-			font-size: 3.65rem;
+			font-size: 2.65rem;
 		}
 
 		h3 {
-			font-size: 3rem;
+			font-size: 2rem;
 		}
 	}
 
@@ -643,7 +628,7 @@ img {
    position: fixed;
    z-index: 10;
    left: 50%;
-   margin: 0 0 0 200px;
+   margin: 0 0 0 100px;
    top: 10px;
 
    a:link, a:hover, a:visited, a:active {
@@ -656,7 +641,7 @@ img {
     display: inline-block;
     }
 @media (min-width: $toc-break) {
-    margin: 0 0 0 520px;
+    margin: 0 0 0 310px;
     }
 }
 .download2{
@@ -675,7 +660,7 @@ img {
    position: fixed;
    z-index: 10;
    left: 50%;
-   margin: 0 0 0 400px;
+   margin: 0 0 0 300px;
    top: 10px;
    a:link, a:hover, a:visited, a:active {
         text-decoration: none;
@@ -687,7 +672,7 @@ img {
     display: inline-block;
     }
 @media (min-width: $toc-break) {
-    margin: 0 0 0 720px;
+    margin: 0 0 0 500px;
     }
 }
 .download1 img{
@@ -699,24 +684,118 @@ img {
     font-weight: bold;
     color: #727272;
 }
+
 .toc{
-    border: 1px solid #aaa;
     left: 50%;
-    margin: 0 0 0 610px;
+    margin: 0 0 0 400px;
     z-index: 0;
 
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-    padding-top: 1.5em;
-    padding-bottom: 1em;
-    width: 240px;
     position: fixed;
     top: 135px;
 
-    background-color: #ffffff;
-    clear:both;
     display: none;
     @media (min-width: $toc-break) {
         display: inline-block;
         }
+	ul {
+		padding: 0;
+		margin: 0;
+        }
+	
+    li{
+        margin: 10px 0 0 0;
+        padding: 0 0 0 20px;
+        list-style: none;
+
+        a:link, a:visited, {
+            color: #4A4A4A;
+        }
+        a:hover, a:active{
+            margin: 10px 0 0 0;
+            padding: 0 0 0 20px;
+            display: block;
+            background: $brand-colour;
+        }
+    }
+    width: 300px;
+}
+
+.logo{
+    position: fixed;
+	@media (min-width: $mobile-break) {
+        margin: 0 auto 0 -630px;
+        left: 50%;
+    }
+    @media (max-width: $toc-break){
+        left: 50%;
+        margin: 0 auto 0 -500px;
+    }
+    z-index: 100;
+    font-size: 28px;
+    top: 10px;
+    display: flex;
+    color: #003566;
+    font-weight: 600;
+    line-height: 0.8;
+    align-items: center;
+    display: none;
+    @media (min-width: $mobile-break) {
+        display: flex;
+    }
+    nav {
+        display: none;
+        @media (min-width: $mobile-break) {
+            display: block;
+        }
+}
+}
+.mobilelogo{
+    display: block;
+    @media (min-width: $mobile-break) {
+        display: none;
+    }
+    
+}
+
+.filler{
+	background: $brand-colour;
+	width: 100%;
+	height: 100px;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	display: none;
+	@media (min-width: $mobile-break) {
+		display: inline;
+	}
+}
+.background-impressum{
+	background: $brand-colour;
+	width: 200%;
+	height: 90px;
+	position: relative;
+	bottom: -23px;
+	left: 0;
+	z-index: 10;
+}
+.impressum-mail{
+   background: $brand-colour;
+   text-align: center;
+   list-style-type: none !important; 
+   border: none;
+   width: 200px;
+   font-size: 20px;
+   box-sizing: border-box;
+   margin: 0.2em 0 0.2em 0;
+   font-weight: 500;
+   color: #000000;
+   transition: all 0.15s;
+   line-height: 1.2;
+   position: relative;
+   z-index: 10;
+   left: 50%;
+   margin: 0 0 0 420px;
+   bottom: 35px;
 }

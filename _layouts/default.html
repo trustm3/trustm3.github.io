@@ -21,6 +21,13 @@
 				ga('send', 'pageview');
 			</script>
 		{% endif %}
+    <div class ="logo">
+        <a href="{{ site.baseurl }}/">
+            <img src="{{ site.baseurl }}/img/trustme-logo.svg" width="90" height="90" alt="{{ site.title }} logo">
+        </a>
+        <nav>{{ site.title }}</nav>
+    </div>
+
     <div class="filler"></div>
     <div class="download1">
         <a href="{{site.githuborg}}/{{site.repository}}/releases/tag/{{site.release_tag}}">
@@ -41,12 +48,14 @@
 	<body>
 		<header>
 			<h1>
-				<a href="{{ site.baseurl }}/">
-                    <img src="{{ site.baseurl }}/img/trustme-logo.svg" width="40" height="40" alt="{{ site.title }} logo">
-                </a>
-                <nav> {{ site.title }}</nav>
-                <span>{% if page.category %}{{ page.category }}{% else %}{{ site.title }}{% endif %}</span>
-
+                <div class= "mobilelogo">
+                    <a href="{{ site.baseurl }}/">
+                        <img src="{{ site.baseurl }}/img/trustme-logo.svg" width="90" height="90" alt="{{ site.title }} logo">
+                    </a>
+                </div>
+        <span>
+            {% if page.category %}{{ page.category }}{% else %}{{ site.title }}{% endif %}
+        </span>
             <button class="download-mobile1"type="nav-item"> 
                 <a href="{{site.githuborg}}/{{site.repository}}/releases/tag/{{site.release_tag}}">
                     <svg aria-hidden="true" viewBox="0 0 16 16" version="1.1" height="40" width="40" class="octicon octicon-package UnderlineNav-octicon">
@@ -90,12 +99,14 @@
 	</body>
     </div>
     <section class="main">
-        <div class ="toc">{% include toc.html html=content %}</div>
+        <div class ="toc">{% include toc.html html=content sanitize=true %}</div>
         <div class="page-header" markdown="1">
         <article class="content">
             {{ content }}
         </article>
     </section>
+    <div class="background-impressum"></div>
+    <div class="impressum-mail"> trustme@aisec.fraunhofer.de </div>
     <script>
         document.getElementById("open-nav").addEventListener("click", function () {
             document.body.classList.toggle("nav-open");
