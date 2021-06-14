@@ -776,9 +776,9 @@ img {
 	width: 200%;
 	height: 90px;
 	position: relative;
-	bottom: -23px;
-	left: 0;
+	bottom: -26px;
 	z-index: 10;
+   margin: 0 0 0 -600px;
 }
 .impressum-mail{
    background: $brand-colour;
@@ -796,6 +796,11 @@ img {
    position: relative;
    z-index: 10;
    left: 50%;
-   margin: 0 0 0 420px;
+   margin: 0 0 0 140px;
    bottom: 35px;
+
+    display: inline-block;
+@media (min-width: $toc-break) {
+    margin: 0 0 0 400px;
+    }
 }
