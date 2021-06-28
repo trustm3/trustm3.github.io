@@ -61,7 +61,7 @@ source init_ws.sh out-yocto <architecture> <machine>
 
 ## Optional: Use own PKI
 If you want to use your own PKI, place the necessary files into the directory `ws-yocto/out-yocto/test_certificates`.
-For more information on which files are needed, please refer to the [PKI section](/pki/pki).
+For more information on which files are needed, please refer to the [PKI section](/pki).
 
 <!--
 ## Build PMU firmware
@@ -88,14 +88,14 @@ Build and include the IDS Trusted Connector container
 bitbake multiconfig:container:ids
 ```
 
-Build and include the debian/os installer image (see [example: Using GuestOs debos](../operate.md#example-using-guestos-debos))
+Build and include the debian/os installer image (see [example: Using GuestOs debos](../operate/examples/#example-using-guestos-debos))
 ```
 bitbake multiconfig:container:deb
 ```
 
 > **experimental**:
 Build and include the docker-converter image
-(see [example: Using docker-convertos](../operate.md#example-using-docker-convertos))
+(see [example: Using docker-convertos](../operate/examples/#example-using-docker-convertos))
 ```
 bitbake multiconfig:container:docker-convert
 ```
