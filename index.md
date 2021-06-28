@@ -62,7 +62,7 @@ After that, you can [build the trust|me base system](/build/build), i.e., kernel
 container. There is also a [quickbuild option](build/quickbuild) and a tutorial how to [create your custom
 GuestOSs](/build/guestos). Once trust\|me is built, you might want to [test it on QEMU/KVM](/deploy/qemu)
 before deploying it onto your target platform (see Deploy options). We provide an overview on how to [manage
-and configure a deployed trust|me system](/operate).
+and configure a deployed trust|me system](/operate/control).
 We also provide descriptions on how to securely [roll-out a platform running trust|me](/provisioning) using our proposed [PKI](/pki).
 
 The remainder of this page highlights possible use cases, supported platforms and related scientific publications.
@@ -72,7 +72,7 @@ For more information on trust\|me and OS-Level virtualization, [read our backgro
 
 
 | __Application separation.__ Similar to Docker trust\|me can be used to separate applications in server environments, yet providing a full system inside a container closer to type 1 hypervisors such as Xen. | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/tux_logo.png" width="15%"> |
-| __IoT edge devices.__ Its stripped-down version -- just a kernel and a small ramdisk as virtualization layer -- targets embedded systems which can be used in the IoT context for edge devices. trust\|me also provides the reference implementation for the so-called Trusted Connector in the Industrial Data Space. The [Industrial Data Space](http://www.industrialdataspace.org/en/) provides concepts for a generic, shared data cloud for the (industrial) Internet of Things | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/logo.png" width="15%">| 
+| __IoT edge devices.__ Its stripped-down version -- just a kernel and a small ramdisk as virtualization layer -- targets embedded systems which can be used in the IoT context for edge devices. trust\|me also provides the reference implementation for the so-called Trusted Connector in the International Data Space. The [International Data Spaces](http://www.internationaldataspaces.org) provides concepts for a generic, shared data cloud for the (industrial) Internet of Things | <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/logo.png" width="15%">| 
 | __Smartphones.__ Due to its history, formerly designed for Smartphones, it could still run on those devices to provide a container execution environment for background containers. Nevertheless, it is also feasible to separate user containers with different security requirements.| <img src="https://github.com/industrial-data-space/trusted-connector-documentation/raw/master/docs/assets/img/android_logo.png" width="15%">|
 
 ## Supported platforms
