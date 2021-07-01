@@ -16,7 +16,7 @@ If you just want to try out trust\|me the core flavour is the best option for yo
 ## Prerequisites
 
 The following prerequisites are necessary for **all** trust\|me flavours. Please make sure your build host meets these requirements:
-   * Build host configuration as described in section [Setup Host]({{ "/" | absolute_url }}setup_host)
+   * Build host configuration as described in section [Setup Host](/setup_host)
    * Sufficient hard disk space, at least 100 GB
    * Sufficient RAM. We tested the build on a VM having 4 GB RAM. However, a build host with less RAM should also work.
 
@@ -88,14 +88,14 @@ Build and include the IDS Trusted Connector container
 bitbake multiconfig:container:ids
 ```
 
-Build and include the debian/os installer image (see [example: Using GuestOs debos](../operate/examples/#example-using-guestos-debos))
+Build and include the debian/os installer image (see [example: Using GuestOs debos](/operate/examples/#example-using-guestos-debos))
 ```
 bitbake multiconfig:container:deb
 ```
 
 > **experimental**:
 Build and include the docker-converter image
-(see [example: Using docker-convertos](../operate/examples/#example-using-docker-convertos))
+(see [example: Using docker-convertos](/operate/examples/#example-using-docker-convertos))
 ```
 bitbake multiconfig:container:docker-convert
 ```

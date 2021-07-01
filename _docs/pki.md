@@ -8,7 +8,7 @@ order: 4
 # Overview of the trust\|me PKI solution
 - TOC
 {:toc}
-<img alt="trustme pki architecture" src="img/pki_trustm3.png" width="55%">
+<img alt="trustme pki architecture" src="../img/pki_trustm3.png" width="55%">
 
 In order to sign all trust\|me software artifacts and to provide device identities (e.g., for secure remote
 management), trust\|me proposes a PKI solution that can be tailored to the requirements of a spefic

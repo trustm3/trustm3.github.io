@@ -12,7 +12,7 @@ This section describes how to run the hosted mode.
 These instructions have been tested and work on Debian 10 stable. 
 
 ## Requirements
-Have a prebuilt container image ready or build one yourself as described in [Build]({{ "/" | absolute_url }}build/build).
+Have a prebuilt container image ready or build one yourself as described in [Build](/build/build).
 
 ### Required packages
 Install all required packages with the following command: 
@@ -47,6 +47,6 @@ sudo make -f Makefile_lsb install
 3. You can either push your own certificate by using cml-control push_ca or copy the ssig_rootca.cert from your build to /var/lib/cml/tokens
 4. Run scd again, this time it will start a loop and keep running
 5. Run cmld and keep it running
-2. Install your guestos as described in [GuestOS configuration]({{ "/" | absolute_url }}operate/guestos_config)
-6. You can now use control as described in [Basic Operation]({{ "/" | absolute_url }}operate/control)
+2. Install your guestos as described in [GuestOS configuration](/operate/guestos_config)
+6. You can now use control as described in [Basic Operation](/operate/control)
 

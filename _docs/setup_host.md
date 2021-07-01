@@ -1,5 +1,5 @@
 ---
-title: Build Environment
+title: Setup Host
 category: General
 order: 3
 ---
