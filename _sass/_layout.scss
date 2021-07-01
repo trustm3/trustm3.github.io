@@ -76,7 +76,7 @@ body {
     h1, h2, h3{
         padding-top: 20px;
         padding-bottom: 10px;
-        scroll-margin-top: 70px;
+        scroll-margin-top: 90px;
     }
 }
 
@@ -698,10 +698,17 @@ img {
     position: fixed;
     top: 135px;
 
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.2rem;
+
     display: none;
     @media (min-width: $toc-break) {
         display: inline-block;
         }
+    a{
+        padding: 0 0 0 15px;
+        margin: 0 0 0 -15px;
+    }
 	ul {
 		padding: 0;
 		margin: 0;
@@ -709,17 +716,18 @@ img {
 	
     li{
         margin: 10px 0 0 0;
-        padding: 0 0 0 20px;
+        padding: 0 0 0 10px;
         list-style: none;
 
         a:link, a:visited, {
             color: #4A4A4A;
         }
         a:hover, a:active{
-            margin: 10px 0 0 0;
-            padding: 0 0 0 20px;
+            font-weight: 600;
+            color: #111;
             display: block;
             background: $brand-colour;
+            
         }
     }
     width: 300px;
