@@ -64,4 +64,4 @@ Further, the init log messages will appear on tty11.
 time untill login prompt may appear. You can accelerate the progress by generating
 randomness with the connected keyboard.
 
-For instructions on how to operate trust\|me please refer to section [Operate](/operate).
+For instructions on how to operate trust\|me please refer to section [Operate](/operate/control).

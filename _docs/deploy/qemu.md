@@ -80,7 +80,7 @@ kvm -m 4096 -bios OVMF.fd -serial mon:stdio \
 # Secure Boot Configuration
 
 ### prerequisites
-We assume you have built the keytool image, see [build](../build/build#build-keytool-image-for-uefi-secure-boot-configuration).     
+We assume you have built the keytool image, see [build](/build/build#build-keytool-image-for-uefi-secure-boot-configuration).     
 Further, we require the OMVF images from the build folder:
 - `tmp/deploy/images/trustx-corei7-64/ovmf.secboot.code.qcow2`
 - `tmp/deploy/images/trustx-corei7-64/ovmf.vars.qcow2`

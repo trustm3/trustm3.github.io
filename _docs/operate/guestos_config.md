@@ -103,11 +103,11 @@ message GuestOSMount {
 	optional string mount_data = 13;  // mount_data used for mount syscall, e.g. "context=" for selinux
 }
 ```
-The ```image_sizes``` parameters of a [container configuration](operate/container_conf) must respect the minimal maximal sizes as defined in the respective GuestOS configuration.
+The ```image_sizes``` parameters of a [container configuration](/operate/container_config) must respect the minimal maximal sizes as defined in the respective GuestOS configuration.
 
 ### Parameter mounts_setup
 The repeated ```mounts_setup``` parameter list all mounts inside a container for its setup mode.
-See [basic operation documentation](operate/control) for information on the different states of a container.
+See [basic operation documentation](/operate/control) for information on the different states of a container.
 
 ### Parameters init_param and init_env
 ```init_param```is used to provide parameters to init.

@@ -16,7 +16,7 @@ Every container runs a certain operating system, which also has to be defined in
 Note that several containers may run the same operating system.
 
 Both container and OS configuration file formats are composed of several ```key: value``` lines.
-A detailed description of the container configuration can be found [here](container_config); the guestOS configuration is described [here](guestos_config).
+A detailed description of the container configuration can be found [here](/operate/container_config); the guestOS configuration is described [here](/operate/guestos_config).
 
 ## Basic trust|me operation
 
@@ -42,10 +42,10 @@ control start <container-uuid> [ --setup ]
 This command starts the container with the given UUID. In order to do so, the container has to be created beforehand by 'control create'.
 The optional `--setup` parameter allows you to manipulate
 the containers root file system tree including all encrypted overlays mounted at `/setup`.
-This could be used to bootstrap an encrypted container, see [example: Using GuestOs debos](#example-using-guestos-debos).
+This could be used to bootstrap an encrypted container, see [example: Using GuestOs debos](/operate/examples/#example-using-guestos-debos).
 When entering this command, you will be interactively asked for the Passphrase/PIN of the softtoken
 used for container en/decryption. If the container configuration specifies that an external USB pin
-reader device should be used (see [Container Configuration](container_config)), the
+reader device should be used (see [Container Configuration](/operate/container_config)), the
 PIN/passphrase must be entered via this device instead of the standard input keyboard.
 
 * Stop container:
@@ -55,7 +55,7 @@ control stop <container-uuid>
 This command stops the currently running container with the given UUID.
 When entering this command, you will be interactively asked for the Passphrase/PIN of the softtoken
 used for container en/decryption. If the container configuration specifies that an external USB pin
-reader device should be used (see [Container Configuration](container_config)), the
+reader device should be used (see [Container Configuration](/operate/container_config)), the
 PIN/passphrase must be entered via this device instead of the standard input keyboard.
 
 * Create container configuration from the given template config file:

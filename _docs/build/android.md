@@ -84,7 +84,7 @@ container encryption.
     
 The generated user token is not used by default as the device generates its own token during first boot.
 However there are provisioning scripts which will replace the usertoken or you can replace it manually
-after deployment as described in [Change default usertoken password](../deploy/smartphone#change-default-usertoken-password).
+after deployment as described in [Change default usertoken password](/deploy/smartphone#change-default-usertoken-password).
 
 ### Enable GApps as feature
 If you want to be able to use gapps inside of your containers,

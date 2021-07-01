@@ -17,9 +17,9 @@ This option mainly targets more advanced users. For information on Yocto, please
 
 ### Preparing the build environment
 
-First, your build host needs to be prepared as described in section [Setup Host]({{ "/" | absolute_url }}setup_host)
+First, your build host needs to be prepared as described in section [Setup Host](\setup_host)
 
-For the purpose of building both the Base system and guest Operating Systems, follow the instructions provided in chapter [Build Base System]({{ "/" | absolute_url }}build/build) and skip the rest of this subsection.
+For the purpose of building both the Base system and guest Operating Systems, follow the instructions provided in chapter [Build Base System](/build/build) and skip the rest of this subsection.
 
 In order to setup an environment for building guest operating systems only, follow the steps below.
 
@@ -81,14 +81,15 @@ bitbake trustx-cml -cclean
 bitbake trustx-cml
 ```
 
-Now you can use the new guest OS when creating containers as described [here]({{ "/" | absolute_url }}/operate).
+Now you can use the new guest OS when creating containers as described [here](/operate/control).
 
 ## Manually / Using a pre-built docker image
 Prerequisites:
 * The software signing certificate and key. If you use the auto-generated PKI the files needed are 'ssig.key' and 'ssig.cert'
 * The signing scripts located at <yocto workspace directory>/trustme/build/device_provisioning/oss_enrollment/config_creator/
 * A root file system image, in the following called root.img (e.g. created using docker build + docker export)
-* An example guest OS config, for example the config located at "<yocto workspace directory>/trustme/build/config_overlay/x86/trustx-coreos.conf" (see [GuestOS configuration]({{ "/" | absolute_url }}operate/guestos_config))
+* An example guest OS config, for example the config located at "\<yocto workspace directory\>/trustme/build/config_overlay/x86/trustx-coreos.conf" (see [GuestOS configuration](/operate/guestos_config))
+
 
 Steps to manually create a guest OS
 
@@ -104,7 +105,7 @@ Steps to manually create a guest OS
 3. Copy the created files to to /data/cml/operatingsystems, e.g. the files trustx-customos-1.conf, trustx-customos-1.cert and trustx-customos-1.sig
 4. Create a directory for your guest OS root.img, e.g. /data/cml/operatingsystems/trustx-customos-1
 5. Copy your root.img to the newly created directory
-6. Create a new container using your guest OS as described [Basic operation]({{ "/" | absolute_url }}operate/control)
+6. Create a new container using your guest OS as described [Basic operation](/operate/control)
 
 ## Using Docker converter from local registry
-This is described in [Example: Using docker-convertos]({{ "/" | absolute_url }}operate/examples#example-using-docker-convertos)
+This is described in [Example: Using docker-convertos](/operate/examples#example-using-docker-convertos)

@@ -91,7 +91,7 @@ message ContainerImageSize {
 	optional string image_file = 3; // name of alternate image file which overwrites image_name of guestos config
 }
 ```
-Valid configuration depends on the choice of the [GuestOS configuration](operate/guestos_config) and its ```mounts``` parameters.
+Valid configuration depends on the choice of the [GuestOS configuration](/operate/guestos_config) and its ```mounts``` parameters.
 For example, the ```debos```  GuestOS configuration defines
 ```
 mounts {
