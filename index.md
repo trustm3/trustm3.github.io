@@ -3,6 +3,9 @@
 title: Overview
 ---
 
+# trust|me is now GyroidOS
+[https://gyroidos.github.io](https://gyroidos.github.io)
+
 # What is trust|me
 
 - TOC
