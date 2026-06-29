@@ -21,6 +21,8 @@
 				ga('send', 'pageview');
 			</script>
 		{% endif %}
+	</head>
+	<body>
     <div class ="logo">
         <a href="{{ site.baseurl }}/">
             <img src="{{ site.baseurl }}/img/trustme-logo.svg" width="90" height="90" alt="{{ site.title }} logo">
@@ -39,13 +41,12 @@
         </a>
     </div>
     <div class="download2">
-        <a href="{{site.githuborg}}/"><img src="{{ site.baseurl }}/img/GitHub-Mark-64px.png" width="40" height="40"</strong>
-        <p>View On <strong>Github</strong></p>
+        <a href="{{site.githuborg}}/">
+            <img src="{{ site.baseurl }}/img/GitHub-Mark-64px.png" width="40" height="40">
+            <p>View On <strong>Github</strong></p>
         </a>
     </div>
 
-	</head>
-	<body>
 		<header>
 			<h1>
                 <div class= "mobilelogo">
@@ -63,7 +64,7 @@
                     </svg>
                 </a>
             </button>
-                <button class="download-mobile2"><a href="{{site.githuborg}}/"><img src="{{ site.baseurl }}/img/GitHub-Mark-64px.png" width="40" height="40"</strong></a></button>
+                <button class="download-mobile2"><a href="{{site.githuborg}}/"><img src="{{ site.baseurl }}/img/GitHub-Mark-64px.png" width="40" height="40"></a></button>
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
 			<form action="{{ site.baseurl }}/search/" method="get">
@@ -96,20 +97,22 @@
 
 			</nav>
 		</header>
-	</body>
-    </div>
+
     <section class="main">
         <div class ="toc">{% include toc.html html=content sanitize=true %}</div>
         <div class="page-header" markdown="1">
         <article class="content">
             {{ content }}
         </article>
+        </div>
     </section>
-    <div class="background-impressum"></div>
-    <div class="impressum-mail"> trustme@aisec.fraunhofer.de </div>
+    <footer>
+        <div class="impressum-mail">trustme@aisec.fraunhofer.de | <a href="https://www.aisec.fraunhofer.de/en/imprint.html">Imprint</a> | <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">Data Protection</a></div>
+    </footer>
     <script>
         document.getElementById("open-nav").addEventListener("click", function () {
             document.body.classList.toggle("nav-open");
         });
     </script>
+	</body>
 </html>

@@ -795,25 +795,40 @@ img {
 }
 .impressum-mail{
    background: $brand-colour;
-   text-align: center;
    list-style-type: none !important; 
    border: none;
-   width: 200px;
-   font-size: 20px;
+   width: auto;
+   white-space: nowrap;
+   font-size: 16px;
    box-sizing: border-box;
-   margin: 0.2em 0 0.2em 0;
    font-weight: 500;
    color: #000000;
    transition: all 0.15s;
-   line-height: 1.2;
-   position: relative;
+   line-height: 1.5;
+   position: static;
    z-index: 10;
-   left: 50%;
-   margin: 0 0 0 140px;
-   bottom: 35px;
+   text-align: center;
+   padding: 0 10px;
 
-    display: inline-block;
-@media (min-width: $toc-break) {
-    margin: 0 0 0 400px;
+    a {
+        display: inline !important;
+        white-space: nowrap;
     }
+
+    @media (max-width: $mobile-break) {
+        white-space: normal;
+        font-size: 13px;
+    }
+
+    @media (min-width: $toc-break) {
+        font-size: 20px;
+    }
+}
+footer {
+    background: $brand-colour;
+    height: auto;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
